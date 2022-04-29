@@ -1,0 +1,23 @@
+\section{Analysis strategy}
+\label{sec:Analysis-Strategy}
+To improve the ratio of signal and background, an event selection needs to be applied on the dataset.
+For that, the analysis is done in \texttt{C++} and \texttt{Root}.
+Afterwards, the different variables are searched for a final discriminant, which has a good separating power in discriminating signal from background.
+In this discriminant, a significant difference of data and a background-only hypothesis is searched for.
+There are five background processes which are simulated in Monte Carlo simulations:
+\begin{itemize}
+  \item \texttt{ttbar}: top quark pair production
+  \item \texttt{singletop}: production of a single top quark
+  \item \texttt{diboson}: pair production of $W$ and/or $Z$ bosons
+  \item \texttt{zjets}: production of a $Z$ boson together with jets
+  \item \texttt{wjets}: production of a $W$ boson together with jets
+\end{itemize}
+Furthermore different \texttt{zprime} MC samples are provided with different $Z^\prime$ mass hypotheses from $\SI{400}{\giga\electronvolt}$ to $\SI{3000}{\giga\electronvolt}$.
+
+The data samples are saved as \texttt{ntuples} in a \texttt{ROOT} format.
+These contain \texttt{TTrees} with several information about variables (in example transversal momentum, energy or pseudorapidity of leptons and jets).
+These data samples already have a preselection applied.
+
+At the end of this analysis, the agreement of MC and data is investigated and a statistical analysis is performed to investigate if there is a significant difference between data and a background-only hypothesis.
+If no significant difference is found, an upper limit for the cross section of $Z^\prime$ events is calculated and compared with expected cross sections.
+If possible, a limit of the  $Z^\prime$ mass is being set as well.

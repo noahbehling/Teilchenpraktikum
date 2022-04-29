@@ -1,0 +1,20 @@
+\section{Discussion}
+\label{sec:Diskussion}
+The Naive-Bayes learner is performing the worst out of the three learners.
+It is the fastest of the three classifiers at the cost of separation power.
+The ROC AUC is the lowest as well as the Jaccard score meaning it is not as stable to statistical fluctuation.
+With the lowest efficiency of $0.7886 \pm 0.0489$ and a purity of $0.8036 \pm 0.0430$ it has the highest uncertainties of the three algorithms as well.
+That is why the Naive-Bayes learner is not suitable for this kind of separation.
+
+The kNN classifier is showing some improvement compared to the previous learner.
+It is relatively fast if $k$ is set to a low amount but for $k=20$ the algorithm works pretty slow.
+If that value is being increased the classifier is even slower without any improvement of the ROC AUC.
+With a slightly higher efficiency of $0.8384 \pm 0.0080$ and a similar purity of $0.8034 \pm 0.0068$ it performs a bit better than Naive-Bayes.
+Noticable is the much lower uncertainty compared to the Naive-Bayes learner.
+
+The \texttt{RandomForestClassifier} is the best classifier on this data set.
+It possesses the highest ROC AUC as well as the highest efficiency $(0.9771 \pm 0.0057)$ and highest purity $(0.9893 \pm 0.0033)$.
+This is because the classifier decorrelates the decision trees to search for correlations between the features.
+Also it is very stable to statistical fluctuation due to the fact that the classifier is trained multiple times and the average of the classifications of these trees is taken.
+This classifier has the best separation power according to that but it also seems to be the slowest.
+Deeper studies on the selected features could improve the performance but even without that this classifier seems highly qualified to separate background and signal since it has a very good ROC AUC.

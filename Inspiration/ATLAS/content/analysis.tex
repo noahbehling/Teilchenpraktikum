@@ -1,0 +1,28 @@
+\section{Analysis}
+\subsection{Preselection}
+To reduce the large amount of data, a lose preselection was applied to the dataset beforehand.
+This preselection includes some requirements for each event.
+Some of the given variables in the data sample have more entries that there are entries in the sample itself.
+This is because events with more than one lepton or more than one jet have a seperate entry of variables connected to the leptons or jets.
+Some triggers are applied to the data as well.
+Since background leptons are difficult to seperate from signal leptons, a cut on the transversal momentum of the lepton is was made at $\SI{20}{\giga\electronvolt}$ to reduce combinatorial background.
+This can be shown in the $\texttt{lep$\_$pt}$ of one of the data samples in figure \ref{fig:leppt}.
+The pseudorapidity shows two areas ($|\eta|\approx 1.4$) with a very low amount of events.
+In this area cables and other not detecting elements are placed so that the geometric acceptance of the detector is not at $100\,\%$.
+The azimuth angle $\phi$ does not show any restrictions in the data set.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/TB_lep_pt.png}
+    \caption{Distribution fo the transversal momentum of the lepton. This plot is a screenshot taken from the \texttt{TBrowser} in the \texttt{ROOT} enviroment. }
+    \label{fig:leppt}
+\end{figure}
+
+
+\input{content/aufgabe3.tex}
+
+\input{content/aufgabe4u5.tex}
+
+\input{content/aufgabe6.tex}
+
+\input{content/aufgabe7.tex}

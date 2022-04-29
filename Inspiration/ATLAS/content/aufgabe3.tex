@@ -1,0 +1,62 @@
+\subsection{Event selection}
+\label{sec:aufgabe3}
+The chosen channel in this analysis is the \texttt{lepton+jets} channel where exactly one charged lepton is produced via $W$ boson decays.
+A minimum transversal momentum of $\texttt{lep$\_$pt} \textgreater \SI{50}{\giga\electronvolt}$ is recommended for this lepton.
+Events that include a lepton with a smaller transversal momentum are being removed.
+This process also includes a neutrino which cannot be observed by the detector, so that a missing transversal energy of $\texttt{met$\_$et} \textgreater \SI{40}{\giga\electronvolt}$ is required as well.
+Since both top quarks decay into a bottom quark and  a $W$ boson, at least a jet number of $\texttt{jet$\_$n} \textless 4$ is required in the selection because of one $W$ boson decaying into two quarks as well.
+Two of these jets have to be b-tagged.
+A $\texttt{jet$\_$pt} \textgreater \SI{40}{\giga\electronvolt}$ is recommended for all jets and at least one with a $\texttt{lep$\_$pt} \textgreater \SI{100}{\giga\electronvolt}$.
+Because of the detector acceptance, the pseudorapidity is set to a value of $|{\eta}| \textless 2.5$. \par
+
+The coefficient $\epsilon \cdot A$ (efficiency times detector acceptance) is calculated as the ratio of events after each of the different requirements in the event selection to the total number of events in the sample.
+
+The efficiencies after each step as well as the corresponding sample is found in table \ref{tab:eff}.
+Cuts on the pseudorapidity of the lepton and the jets are made after $\texttt{lep$\_$pt}$ and $\texttt{jet$\_$pt}$.
+These do not show any significant change in the efficiency of any sample, thus they are not shown in the table.
+
+\begin{table}
+    \centering
+    \caption{Calculated efficiencies after cutting on different variables.}
+    \label{tab:eff}
+    \resizebox{\textwidth}{!}{\begin{tabular}{c|cccccc}
+    \toprule
+    Sample & $\texttt{lep$\_$n}$ & $\texttt{lep$\_$pt}$  & $\texttt{jet$\_$n}$ & $\texttt{jet$\_$pt}$ & $\texttt{btagged}$ & $\texttt{met$\_$et} $   \\
+    \midrule
+    \texttt{ttbar.el}      & 0.9316 & 0.5070  & 0.2440 & 0.1408  & 0.0606      & 0.0430\\
+    \texttt{ttbar.mu}      & 0.9200 & 0.4821  & 0.2328 & 0.1342  & 0.0580      & 0.0410\\
+    \texttt{singletop.el}  & 0.9806 & 0.4323  & 0.0532 & 0.0311  & 0.0103      & 0.0071\\
+    \texttt{singletop.mu}  & 0.9786 & 0.4104  & 0.0498 & 0.0288  & 0.0097      & 0.0068\\
+    \texttt{diboson.el}    & 0.9044 & 0.3813  & 0.0119 & 0.0048  & 0.0001      & 7.9691e-05 \\
+    \texttt{diboson.mu}    & 0.8731 & 0.3510  & 0.0091 & 0.0038  & 9.99691e-05 & 7.38902e-05 \\
+    \texttt{wjets.el}      & 0.9999 & 0.1709  & 0.0029 & 0.0017  & 1.99407e-05 & 1.39121e-05\\
+    \texttt{wjets.mu}      & 0.9999 & 0.1589  & 0.0027 & 0.0016  & 2.33554e-05 & 1.56505e-05\\
+    \texttt{zjets.el}      & 0.7167 & 0.1814  & 0.0067 & 0.0032  & 0.000135906 & 4.8692e-05\\
+    \texttt{zjets.mu}      & 0.5015 & 0.1256  & 0.0025 & 0.0014  & 7.37231e-05 & 3.18146e-05\\
+    \texttt{zprime400.el}  & 0.9308 & 0.4464  & 0.1640 & 0.0470  & 0.0192      & 0.0124\\
+    \texttt{zprime400.mu}  & 0.9201 & 0.4215  & 0.1597 & 0.0539  & 0.0203      & 0.0137\\
+    \texttt{zprime500.el}  & 0.9324 & 0.5616  & 0.2539 & 0.1501  & 0.0626      & 0.0418\\
+    \texttt{zprime500.mu}  & 0.9224 & 0.5353  & 0.2319 & 0.1358  & 0.0581      & 0.0389\\
+    \texttt{zprime750.el}  & 0.9237 & 0.6705  & 0.3881 & 0.3503  & 0.1573      & 0.1216\\
+    \texttt{zprime750.mu}  & 0.9133 & 0.6451  & 0.3710 & 0.3332  & 0.1526      & 0.1220\\
+    \texttt{zprime1000.el} & 0.9339 & 0.7342  & 0.4599 & 0.4401  & 0.2088      & 0.1790\\
+    \texttt{zprime1000.mu} & 0.9182 & 0.7055  & 0.4573 & 0.4335  & 0.2023     & 0.1682\\
+    \texttt{zprime1250.el} & 0.9355 & 0.7475  & 0.4811 & 0.4667  & 0.2158      & 0.1900 \\
+    \texttt{zprime1250.mu} & 0.9246 & 0.7319  & 0.4867 & 0.4704  & 0.2218      & 0.1932\\
+    \texttt{zprime1500.el} & 0.9401 & 0.7711  & 0.5014 & 0.4904  & 0.2121      & 0.1904\\
+    \texttt{zprime1500.mu} & 0.9287 & 0.7483  & 0.5012 & 0.4906  & 0.2126      & 0.1894\\
+    \texttt{zprime1750.el} & 0.9473 & 0.7758  & 0.5140 & 0.5038  & 0.2146      & 0.1932\\
+    \texttt{zprime1750.mu} & 0.9383 & 0.7571  & 0.5036 & 0.4918  & 0.2091      & 0.1898\\
+    \texttt{zprime2000.el} & 0.9451 & 0.7629  & 0.4988 & 0.4876  & 0.1914     & 0.1749\\
+    \texttt{zprime2000.mu} & 0.9406 & 0.7611  & 0.5171 & 0.5069  & 0.1971      & 0.1802\\
+    \texttt{zprime2250.el} & 0.9450 & 0.7451  & 0.4948 & 0.4841  & 0.1846      & 0.1688\\
+    \texttt{zprime2250.mu} & 0.9448 & 0.7640  & 0.5183 & 0.5086  & 0.2012      & 0.1824\\
+    \texttt{zprime2500.el} & 0.9480 & 0.7509  & 0.4958 & 0.4811  & 0.1762      & 0.1600\\
+    \texttt{zprime2500.mu} & 0.9433 & 0.7595  & 0.5211 & 0.5080  & 0.1933      & 0.1765\\
+    \texttt{zprime3000.el} & 0.9437 & 0.7151  & 0.4510 & 0.4268  & 0.1656      & 0.1463\\
+    \texttt{zprime3000.mu} & 0.9398 & 0.7314  & 0.4833 & 0.4633  & 0.1781      & 0.1607\\
+    \bottomrule
+    \end{tabular}}
+\end{table}
+
+After this event selection $t\bar{t}$ prodiction is the dominant background since it has a very similar final state as the signal channel.

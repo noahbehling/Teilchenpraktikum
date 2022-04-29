@@ -1,0 +1,280 @@
+\section{Analysis Strategy}
+\label{sec:Analysis-Strategy}
+This analysis uses two data sets.
+One contains simulated events of the decay \mbox{$B^{\pm} \to \symup{K}^{\pm} \symup{K}^{+} \symup{K}^{-}$} while the other are measurements from the LHCb experiment of the year 2011 with an integrated luminosity of $\SI{434}{pb}^{-1}$ for the up polarity of the magnet and $\SI{584}{pb}^{-1}$ for the down polarity.
+These measurements were selected on the same decay as the simulated data.
+After preselecting the data set by applying cuts in particle identification variables, global $C\!P$ violation in this data set is investigated.
+By cutting on their respective masses, charmonium resonances are being removed by using a Dalitz plot.
+At the end studies on local $C\!P$ violation are made by using the remaining data.
+
+
+
+\section{Analysis}
+\subsection{Invariant mass of simulated $B$ mesons}
+The mass of the $B$ mesons cannot be determined directly.
+Therefore it is calculated via the final state particles in the given simulated data set.
+In the case of the decay
+\begin{equation*}
+  B^{\pm} \to \symup{K}^{\pm} \symup{K}^{+} \symup{K}^{-}\,.
+\end{equation*}
+the $B$ mass is given by the mass and momenta of the three kaons with the relativistic relation of
+\begin{equation}
+  \symup{E}^2 = \symup{p}^2 + \symup{m}^2\,.
+  \label{eqn:relativityEQ}
+\end{equation}
+The distribution of the three momentum components of one kaon is shown in figure \ref{fig:KP}.
+The x and y components have a very similar distribution due to symmetrical reasons since both are transversal components of the momentum.
+The z component of the kaon momentum has a different distrubution since it is the longitudinal component directing in the direction of the proton-proton beam.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/SIM_H1_P.pdf}
+  \caption{The three components x, y and z of the momentof of the first kaon candidate.}
+  \label{fig:KP}
+\end{figure}
+To calculate the magnitude of the momentum the relation
+\begin{equation}
+  p = \sqrt{p_x^2+p_y^2+p_z^2} \label{eqn:pxyz}
+\end{equation}
+is used.
+Together with the kaon mass of $\SI{493.677}{MeV}$ \cite{pdg} the energy of the kaons is calculated using (\ref{eqn:relativityEQ}).
+The resulting energy distribution of the first kaon candidate is shown in figure \ref{fig:KE}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/SIM_H1_E.pdf}
+  \caption{Energy distribution calculated from the mass and momentum of the first kaon candidate.}
+  \label{fig:KE}
+\end{figure}
+Because of conservation of energy the energy of the $B$ meson is equal to the sum of the energies of the three kaons.
+The components of the momentum of the $B$ meson are calculated like
+\begin{equation}
+  p_i(B)=p_i(K_1)+p_i(K_2)+p_i(K_3),
+\end{equation}
+where $i$ can be x, y or z indicating the component of the momentum and $K_1, K_2$ and $K_3$ are the three kaons.
+To get the magnitude of momentum (\ref{eqn:pxyz}) is used again.
+
+By using the relation (\ref{eqn:relativityEQ}), this leads to an invariant mass distribution of the $B$ meson as shown in figure \ref{fig:BM}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/SIM_B_M.pdf}
+  \caption{Invariant mass distribution of the simulated $B$ mesons.}
+  \label{fig:BM}
+\end{figure}
+The figure shows a sharp peak at the location of the known $B$ mass of $\SI{5279.26}{MeV}$ \cite{pdg}.
+
+\subsection{Invariant mass of measured $B$ mesons}
+Before calculating the invariant mass of the measured $B$ mesons, a preselection is applied.
+The following cuts are taken on the given data:
+\begin{enumerate}
+  \item \texttt{H$_n$\_isMuon} == False
+  \item \texttt{H$_n$\_ProbPi} < 0.5
+  \item \texttt{H$_n$\_ProbK} > 0.5
+\end{enumerate}
+In this case $n$ can be 1, 2 or 3 indicating that the cuts are applied on all three final state hadrons.
+The boolean \texttt{isMuon} indicates if the identified particle is classified as a muon.
+\texttt{ProbPi} and \texttt{ProbK} show the probability of the hadron being a pion or a kaon.
+These variables are shown for the first hadron in figure \ref{fig:ProbPi} and \ref{fig:ProbK}.
+The variables of the other hadrons possess a similar distribution.
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/DATA_H1_ProbPi.pdf}
+  \caption{ProbPi with a cut at ProbPi < 0.5}
+  \label{fig:ProbPi}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/DATA_H1_ProbK.pdf}
+  \caption{ProbK with a cut at ProbK > 0.5}
+  \label{fig:ProbK}
+\end{subfigure}
+\caption{ProbPi and ProbK for the first kaon candidate.}
+\end{figure}
+
+The invariant mass of the $B$ meson is calculated analog to the previous section.
+This leads to the distribution shown in figure \ref{fig:BMData}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/DATA_B_M.pdf}
+  \caption{Invariant mass distribution of the measured $B$ mesons.}
+  \label{fig:BMData}
+\end{figure}
+It shows some differences to the simulated data set.
+On the lower and higher mass side there are some background events showing up.
+Beside that the mass peak is more smeared out due to energy fluctuations and resolution effects.
+Since changing the cuts on the ProbPi and ProbK variables seem to cut away a lot of events in the signal region while leaving most of the background events in the mass side bands, these variable cuts are not changed in any way.
+For the further analysis cuts on the $B$ mass are being made since the mass side bands mostly contain combinatorial and partial reconstructed background.
+The following mass region will be analyzed in the following:
+\begin{equation*}
+  5200 < B\_M < 5350 \, ,
+\end{equation*}
+where \texttt{B\_M} is the reconstructed mass in MeV.
+The remaining events are shown in figure \ref{fig:BMSignal}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/DATA_B_M_CUT.pdf}
+  \caption{Invariant mass distribution of the measured $B$ mesons with cuts on the $B$ mass.}
+  \label{fig:BMSignal}
+\end{figure}
+
+\subsection{Search for global $C\!P$ violation}
+To measure $C\!P$ violation in general, the number of decays with $B^+$ ($N^+$) and with $B^-$ ($N^-$) has to be known.
+To get the charge of a $B$ meson, the charge of the final states kaons has to be taken into account:
+\begin{equation}
+  Q(B) = Q(K_1) + Q(K_2) + Q(K_3)
+\end{equation}
+where $Q$ is the charge of the corresponding particle with a value of $\pm 1$.
+After getting ($N^+$) and ($N^-$) by counting the remaining events, the global $C\!P$ asymmetry is calculated by using
+\begin{equation}
+  A = \frac{N^+-N^-}{N^++N^-} = -0.0502. \label{eqn:ACP}
+\end{equation}
+The corresponding statistical uncertainty and the statistical significance have values of
+\begin{align}
+  \label{eqn:sigmaCP}
+  \sigma_A &= \sqrt{\frac{1 - A^2}{N^{+} + N^{-}} } \approx 0.0077 \\
+  \label{eqn:signifikanzCP}
+  \text{significance} &= \frac{\symup{A}}{\sigma_A} \approx 6.5035 \, .
+\end{align}
+The sicnificance of $6.5\,\sigma$ would usually mean a discovery of $C\!P$ violation.
+However in this case no systematic uncertainies are being considered yet.
+By considering a production asymmetry of $1\,\%$ the corrected significance has just a value of $3.978\,\sigma$, having a value smaller that $5\,\sigma$ so it can only be considered as an evidence of $C\!P$ violation.
+
+\subsection{Dalitz plots and two-body resonances}
+An important method used in three-body decays are Dalitz plots.
+The decay \mbox{$B^{\pm} \to \symup{K}^{\pm} \symup{K}^{+} \symup{K}^{-}$} can be a direct decay or via $B^{\pm} \to \symup{K}^{+} \symup{R}^{0}$ where $R^0$ is an uncharged particle decaying into $K^+ K^-$.
+Since the measured kaons are enumerated, there are three combinations of final state particles with two-body resonances:
+\begin{enumerate}
+  \item $R^{0}_1 \to K_1^+ K_2^-$
+  \item $R^{++}_2 \to K_1^+ K_3^+$
+  \item $R^{0}_3 \to K_3^+ K_2^-$
+\end{enumerate}
+The double charged resonance $R^{++}$ is not expected.
+The charge of a $q\bar{q}$ pair cannot be added to a value of 2.
+This leads to two remaining resonances: $R^0_1$ and $R^0_3$.
+These $R^0$ resonances can be shown in a Dalitz plot.
+
+The momenta and energies of the three final state kaons are not independent since these are conserved quantities.
+By plotting the invariant mass squares of just two of the three kaons, it is possible to identify resonances occuring in the data.
+Figure \ref{fig:DalitzSim} shows a Dalitz plot for the simulated data.
+The plot shows an even distribution of the kinematicaly allowed region of energies and momenta.
+The Dalitz plot of the measured data is shown in figure \ref{fig:DalitzData}.
+Two resonance lines are recognizable.
+To highlight these lines even more the resonance masses are being sorted.
+The invariant masses $m_{12}$ and $m_{23}$ are being compared and the bigger mass is sorted into $R^0_\text{max}$ and the lower mass into $R^0_\text{min}$.
+By using these as Dalitz variables the Dalitz plot now shows a more compromised kinetical area with more visible lines due to a higher event density.
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/SIM_DALITZ.pdf}
+  \caption{Dalitz plot of the simulated $B^{\pm} \to \symup{K}^{\pm} \symup{K}^{+} \symup{K}^{-}$ data.}
+  \label{fig:DalitzSim}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ.pdf}
+  \caption{Dalitz plot of the measured data containing resonances.}
+  \label{fig:DalitzData}
+\end{subfigure}
+\caption{Dalitz plots of simulated and measured data.}
+\end{figure}
+This is shown in figure \ref{fig:Sorted}.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{plots/DATA_DALITZ_SORTED.pdf}
+  \caption{Dalitz Plot with $R^2_\text{max}$ and $R^2_\text{min}$ as Dalitz variables.}
+  \label{fig:Sorted}
+\end{figure}
+
+A binned version of the Dalitz plot is being produced to highlight the resonance lines in.
+The binned Dalitz plot is shown in figure \ref{fig:DalitzBinned}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{plots/DATA_DALITZ_BINNED.pdf}
+  \caption{Binned Dalitz plot of measured data showing resonance lines.}
+  \label{fig:DalitzBinned}
+\end{figure}
+The first visible line with an invariant mass squared of approximately $\SI{1.2e7}{MeV\squared}$ leads to a mass of $M \approx \SI{3464}{MeV}$.
+The particle closest to this mass is the $\chi_{c0}(1P)$ with a mass of $\SI{3414}{MeV}$ which is decaying into $K^+K^-$ with a branching fraction of $(6.05\pm0.31) \times 10^{-3}$\cite{pdg}.
+The reason for the discrepancy of the $\chi_{c0}(1P)$ mass and the resonance line is that the position of the line is just estimated and the events in the line do not form a perfect line but a distribution.
+The second resonance is at an invariant mass squared of approximatelly $\SI{0.3e7}{MeV\squared}$.
+The corresponding resonance mass is $M \approx \SI{1732}{MeV}$.
+The particle this mass belongs to is the $D^0$ with a mass of $\SI{1864}{MeV}$ decaying into $K^+K^-$ with a branching fraction of $(4.08\pm0.06) \times 10^{-3}$\cite{pdg}.
+Another particle which is in this mass region decaying into $K^+K^-$ is the $J/\psi$ with a mass of $\SI{3096}{MeV}$.
+Even though the mass is not directly on the resonance lines of the Dalitz plots, it is still being taken into account.
+After cutting on the $\chi_{c0}(1P)$, $D^0$ and $J/\psi$ masses with the cuts
+\begin{align*}
+ \SI{1800}{\mega\electronvolt} < B_M < \SI{1900}{\mega\electronvolt}  \\
+ \SI{3080}{\mega\electronvolt} < B_M < \SI{3120}{\mega\electronvolt} \\
+ \SI{3380}{\mega\electronvolt} < B_M < \SI{3450}{\mega\electronvolt}
+\end{align*}
+the two Dalitz plots from $B^+$ and $B^-$ decays are being compared.
+These are shown in figure \ref{fig:DalitzBPLUS} and \ref{fig:DalitzBMINUS}.
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ_BPLUS.pdf}
+  \caption{Binned Dalitz plot of $B^+$.}
+  \label{fig:DalitzBPLUS}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ_BMINUS.pdf}
+  \caption{Binned Dalitz plot of $B^-$.}
+  \label{fig:DalitzBMINUS}
+\end{subfigure}
+\caption{Binned Dalitz plots of both $B^\pm$ decays after cutting out the resonances.}
+\end{figure}
+
+Since both plots look very similar, an asymmetry plot with bigger binning is made as well as a plot to show the uncertainties and the significance.
+This also allows to calculate the binned asymmetries.
+These plots are shown in figure \ref{fig:DalitzLocal}.
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{0.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ_LOCAL.pdf}
+  \caption{Binned Dalitz plot showing the asymetry of $B^+$ and $B^-$.}
+
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ_LOCAL_UNCERTAINTY.pdf}
+  \caption{Uncertainty of the asymetry.}
+
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{plots/DATA_DALITZ_LOCAL_SIGNIFICANCE.pdf}
+  \caption{Significance of local $C\!P$ violation}
+  \label{fig:DalitzSignificance}
+
+\end{subfigure}
+
+\caption{Asymmetry, uncertainty and significane comparing $B^+$ and $B^-$ decays.}
+\label{fig:DalitzLocal}
+\end{figure}
+
+In figure \ref{fig:DalitzSignificance} the region
+\begin{align*}
+ \SI{0.6e7}{\mega\electronvolt\squared} < R_\text{max}^2 < \SI{1.3e7}{\mega\electronvolt\squared}\\
+ \SI{0.1e7}{\mega\electronvolt\squared} < R_\text{min}^2 < \SI{0.3e7}{\mega\electronvolt\squared}
+\end{align*}
+shows the largest significance.
+The invariant mass distribution of $B^+$ and $B^-$ decays in that region is shown in figure \ref{fig:BPM}.
+It shows the difference in $B^+$ and $B^-$ events indicating local $C\!P$ violation.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/DATA_CP.pdf}
+  \caption{Comparison of $B^+$ and $B^-$ events showing the local $C\!P$ violation.}
+  \label{fig:BPM}
+\end{figure}
+
+After calculating the statistical uncertainty and significance, this leads to a value of
+\begin{equation*}
+  A_\text{local}= -0.154 \pm 0.017 (\text{stat.})
+\end{equation*}
+This results in a significance of $8.99\,\sigma$.
+After taking the systematic uncertainty of $1\,\%$ into account caused by production asymmetry there is still a significance of $7.77\,\sigma$.
+This is an evidence of local $C\!P$ violation in the decay $B^{\pm} \to \symup{K}^{\pm} \symup{K}^{+} \symup{K}^{-}$.

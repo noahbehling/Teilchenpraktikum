@@ -1,0 +1,129 @@
+\section{Agreement between data and simulation}
+After the selection is done, the agreement of data and simulation is investigated.
+For that, the expected amount of event is being calculated using the formula
+\begin{equation}
+N = \mathcal{L} \sigma (A \epsilon)\,.
+\label{eqn:erwartung}
+\end{equation}
+Here $(A \cdot \epsilon)$ is the acceptance times the efficiency of the event selection that was calulated in section \ref{sec:aufgabe3}, $\sigma$ is the cross section of the respective event and $\mathcal{L} = \SI{1}{\femto b}^{-1}$ is the integrated luminosity of the dataset.
+Cross sections as well as expected amount of events in the chose data sample (\texttt{data.mu.2.root}) are shown in table \ref{tab:Erwartungen}.
+A total amount of $70.42$ background events is expected in this sample. After selection, the total amount of events is $N_{tot} = 99$.
+\begin{table}[H]
+    \centering
+    \caption{Anzahl erwarteter Ereignisse für die einzelnen Prozesse im sample \texttt{data.mu.2.root}. Angegeben
+    ist der zugehörige Wirkungsquerschnitt der für die Berechnung der einzelnen Werte nach Formel
+    \eqref{eqn:erwartung} benötigt wird.}
+    \label{tab:Erwartungen}
+    \begin{tabular}{c|cc}
+    \toprule
+    Prozess & $\text{N}_\text{expected}$ & $\sigma$ / $\SI{}{\pico b}$ \\
+    \midrule
+    \texttt{ttbar}      &  3.1893  & 252.82    \\
+    \texttt{singletop}  &  3.5362   & 52.47     \\
+    \texttt{diboson}    &  3.1561   & 29.41     \\
+    \texttt{zjets}      &  6.6564   & 2516.20   \\
+    \texttt{wjets}      &  53.8832  & 36214     \\
+    \texttt{zprime400}  &  108.9000 & 1.1e2     \\
+    \texttt{zprime500}  &  81.1800  & 8.2e1     \\
+    \texttt{zprime750}  &  19.8000  & 2.0e1     \\
+    \texttt{zprime1000} &  5.4450  & 5.5       \\
+    \texttt{zprime1250} &  1.881 & 1.9       \\
+    \texttt{zprime1500} &  0.8217   & 8.3e-1    \\
+    \texttt{zprime1750} &  0.2970   & 3.0e-1    \\
+    \texttt{zprime2000} &  0.1386   & 1.4e-1    \\
+    \texttt{zprime2250} &  0.0663  & 6.7e-2    \\
+    \texttt{zprime2500} &  0.0346   & 3.5e-2    \\
+    \texttt{zprime3000} &  0.0119   & 1.2e-2    \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+For these events, weights need to be applied since they are just refering to their respective sample.
+These weights normalize the MC samples to the data sample.
+The weights are calculated after
+\begin{equation}
+w = \frac{\mathcal{L} \sigma}{\text{N}_\text{MC}}\,.
+\label{eqn:weights}
+\end{equation}
+$\text{N}_\text{MC}$ is the number of MC events before the preselection.
+The sizes of the samples as well as the calculated weights are shown in table \ref{tab:weights}.
+
+\begin{table}[H]
+    \centering
+    \caption{Calculated weights for the different processes. The cross section used to calculate the weights is shown in table  \ref{tab:Erwartungen}. The integrated luminosity is $\mathcal{L} = \SI{1}{\femto b}^{-1}$. The weights are calculated using \eqref{eqn:weights}.}
+    \label{tab:weights}
+    \begin{tabular}{c|cc}
+    \toprule
+    process & $\text{N}_\text{MC}$ & weights $w$ \\
+    \midrule
+    \texttt{ttbar}      & 7847944    & 0.03221     \\
+    \texttt{singletop}  & 1468942    & 0.03572     \\
+    \texttt{diboson}    & 922521     & 0.03188     \\
+    \texttt{wjets}      & 66536222   & 0.54428     \\
+    \texttt{zjets}      & 37422926   & 0.06724     \\
+    \texttt{zprime400}  & 100000     & 1.10000     \\
+    \texttt{zprime500}  & 100000     & 0.82000     \\
+    \texttt{zprime750}  & 100000     & 0.20000     \\
+    \texttt{zprime1000} & 100000     & 0.55000     \\
+    \texttt{zprime1250} & 100000     & 0.19000     \\
+    \texttt{zprime1500} & 100000     & 0.08300     \\
+    \texttt{zprime1750} & 100000     & 0.03000     \\
+    \texttt{zprime2000} & 100000     & 0.01400     \\
+    \texttt{zprime2250} & 100000     & 0.00067     \\
+    \texttt{zprime2500} & 100000     & 0.00035     \\
+    \texttt{zprime3000} & 100000     & 0.00012     \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+After applying these weights, stacked plots are being produced.
+For that the different background process distributions are stacked and the data events are added to compare them to the expected background. Four of these plots are shown in figure \ref{fig:stack}.
+
+
+\begin{figure}[H]
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{plots/stacked_lep_pt.pdf}
+    \caption{}
+    \label{fig:stacked_lep_pt}
+  \end{subfigure}%
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{plots/stacked_jet_eta.pdf}
+    \caption{}
+    \label{fig:stacked_jet_eta}
+  \end{subfigure}%
+  \newline
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{plots/stacked_jet_pt.pdf}
+    \caption{}
+    \label{fig:stacked_jet_pt}
+  \end{subfigure}%
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{plots/stacked_lep_E.pdf}
+    \caption{}
+    \label{fig:stacked_lep_E}
+  \end{subfigure}%
+  \caption{Stacked background samples in comparison to the data sample.
+Shown is the transversal momentum of the muon (\subref{fig:stacked_lep_pt}), the jet pseudorapidity (\subref{fig:stacked_jet_eta}),
+  the transversal momentum of the jets (\subref{fig:stacked_jet_pt}) and lepton energy (\subref{fig:stacked_lep_E}).
+  }
+  \label{fig:stack}
+\end{figure}
+
+All four plots show a mostly good agreement of expected background and data.
+Some data points are higher than the expected background which could be a hint on a $Z^\prime$ event.
+In this case there are also some data points lower than the expected background, indicating that these are just statistical fluctuations.
+
+Figure \ref{fig:disc} shows the discriminating variable, the invariant mass of the system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/stacked_mass.pdf}
+    \caption{Distrubution of expected background events and data of the invariant mass of the system.}
+    \label{fig:disc}
+\end{figure}
+
+The same properties as before can be observed in this plot. There are some data points higher than the expected background and some that are significantly lower.
+This again indicates that these peaks are just statistical fluctuations.
