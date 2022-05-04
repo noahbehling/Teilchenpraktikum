@@ -27,7 +27,7 @@ background = background.dropna(axis=1, how="any")
 
 # Attribute entfernen, die nur in einem df enthalten sind
 common_cols = [col for col in set(signal.columns).intersection(background.columns)]
-print(len(common_cols))
+
 
 kill_uniques = [any(x in y for x in common_cols) for y in signal.columns.values]
 kill_uniques = np.logical_not(kill_uniques)
