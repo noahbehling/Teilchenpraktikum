@@ -62,7 +62,7 @@ for att in bcol:
     if att not in scol:
         bkg.drop(att, axis=1, inplace = True)
 
-print("Data preparation Done")
+print("Data preparation Done") 
 
 #Making labels
 sig_label = np.ones(signal.shape[0])
@@ -71,8 +71,12 @@ bkg_label = np.zeros(bkg.shape[0])
 combined_df = pd.concat([signal, bkg], ignore_index=True)
 combined_label = np.append(sig_label, bkg_label)
 
+##########################################################################################################################################################
+
 #adding labels for mRMR and shuffle data
-combined_df.insert(0, 'label', combined_label)
+combined_df.insert(0, 'label', combined_label) # check
+
+
 shuffled = combined_df.sample(frac=1, replace=True, random_state=1)
 
 # #Discretize Data for mRMR
@@ -85,6 +89,8 @@ y = shuffled['label']
 X = shuffled.drop('label', axis=1)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# feature selection
 
 # Number of features
 # N_feat = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
@@ -150,6 +156,9 @@ for i in range(feats):
 # werfe aus den trainingsdaten und testdaten alle features bis auf die wichtigsten raus
 X_train = X_train.loc[:, features]
 X_test = X_test.loc[:, features]
+
+
+# learning
 
 # Random Forest Classifier
 RFClf = ensemble.RandomForestClassifier(n_estimators=100)
