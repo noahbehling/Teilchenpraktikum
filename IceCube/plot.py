@@ -296,7 +296,7 @@ plt.title('Jaccard-Score, RFC')
 #plt.show()
 # make a beautiful plot to see if there is a trend
 
-plt.savefig('/plots/RF_test.pdf')
+plt.savefig('plots/RF_test.pdf')
 plt.close()
 
 # finally the classifier will be used with the optimal trees 
@@ -382,7 +382,7 @@ plt.title('Jaccard-Score, kNN')
 #plt.show()
 # make a beautiful plot to see if there is a trend
 
-plt.savefig('/plots/kNN_test.pdf')
+plt.savefig('plots/kNN_test.pdf')
 
 plt.close()
 
@@ -446,5 +446,5 @@ plt.title('ROC curve')
 plt.legend(loc='best')
 #plt.show()
 
-plt.savefig('/plots/ROC.pdf')
+plt.savefig('plots/ROC.pdf')
 plt.close()
