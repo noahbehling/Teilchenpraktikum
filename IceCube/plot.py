@@ -143,6 +143,29 @@ columns = ['CorsikaWeightMap.AreaSum',
 df_background.drop(columns, axis = 1, inplace = True)
 # remove Monte-Carlo truths from background dataframe 
 
+# drop von anderen Protokoll ###############################################################################
+
+df_signal = df_signal.drop(df_signal.filter(regex='MC').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='Weight').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='Corsika').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='I3EventHeader').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='end').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='start').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='time').columns, axis=1)
+df_signal = df_signal.drop(df_signal.filter(regex='NewID').columns, axis=1)
+
+df_background.drop(df_background.filter(regex='MC').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='Weight').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='Corsika').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='I3EventHeader').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='end').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='start').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='time').columns, axis=1, inplace = True)
+df_background.drop(df_background.filter(regex='NewID').columns, axis=1, inplace = True)
+
+############################################################################################################
+
+
 df_signal.replace({np.inf : np.nan, -np.inf : np.nan}, value=None, inplace = True)
 df_background.replace({np.inf : np.nan, -np.inf : np.nan}, value=None, inplace = True)
 # convert all infinities into NaN
@@ -296,7 +319,7 @@ plt.title('Jaccard-Score, RFC')
 #plt.show()
 # make a beautiful plot to see if there is a trend
 
-plt.savefig('/plots/RF_test.pdf')
+#plt.savefig('/plots/RF_test.pdf')
 plt.close()
 
 # finally the classifier will be used with the optimal trees 
@@ -331,8 +354,10 @@ print('jaccard score, RFC: ', rfc_Jscore)
 
 cv_score_rfc_eff = cross_val_score(RFClf, X, y, cv=5, scoring='recall')
 print("Effizienz: %0.4f (+/- %0.4f)" % (cv_score_rfc_eff.mean(), cv_score_rfc_eff.std() * 2))
+
 cv_score_rfc_rein = cross_val_score(RFClf, X, y, cv=5, scoring='precision')
 print("Reinheit: %0.4f (+/- %0.4f)" % (cv_score_rfc_rein.mean(), cv_score_rfc_rein.std() * 2))
+
 cv_score_rfc_J = cross_val_score(RFClf, X, y, cv=5, scoring='jaccard')
 print("Jaccard Index: %0.4f (+/- %0.4f)" % (cv_score_rfc_J.mean(), cv_score_rfc_J.std() * 2))
 #  efficiency, precision and jaccard index with cross-validation
@@ -382,7 +407,7 @@ plt.title('Jaccard-Score, kNN')
 #plt.show()
 # make a beautiful plot to see if there is a trend
 
-plt.savefig('/plots/kNN_test.pdf')
+#plt.savefig('/plots/kNN_test.pdf')
 
 plt.close()
 
@@ -395,16 +420,20 @@ PRED_knn = PRED_knn[:, 1]
 fpr2, tpr2, thr2 = roc_curve(y_test, PRED_knn)
 
 knn_precision = precision_score(y_test, knn_clf.predict(X_test))
+print('KNN precision score(sklearn) = ', knn_precision)
+
 knn_eff = accuracy_score(y_test, knn_clf.predict(X_test))
 print('KNN accuracy score(sklearn) = ', knn_eff)
-print('KNN precision score(sklearn) = ', knn_precision)
+
 knn_Jscore = jaccard_score(y_test, knn_clf.predict(X_test))
 print('jaccard score, kNN: ', knn_Jscore)
 
 cv_score_knn_eff = cross_val_score(knn_clf, X, y, cv=5, scoring='recall')
 print("Effizienz: %0.4f (+/- %0.4f)" % (cv_score_knn_eff.mean(), cv_score_knn_eff.std() * 2))
+
 cv_score_knn_rein = cross_val_score(knn_clf, X, y, cv=5, scoring='precision')
 print("Reinheit: %0.4f (+/- %0.4f)" % (cv_score_knn_rein.mean(), cv_score_knn_rein.std() * 2))
+
 cv_score_knn_J = cross_val_score(knn_clf, X, y, cv=5, scoring='jaccard')
 print("Jaccard Index: %0.4f (+/- %0.4f)" % (cv_score_knn_J.mean(), cv_score_knn_J.std() * 2))
 
@@ -418,10 +447,12 @@ NB_pred = NB_pred[:, 1]
 fpr3, tpr3, thr3 = roc_curve(y_test, NB_pred)
 
 NB_precision = precision_score(y_test, NB_clf.predict(X_test))
-NB_eff = accuracy_score(y_test, NB_clf.predict(X_test))
-NB_Jscore = jaccard_score(y_test, NB_clf.predict(X_test))
-print('NB accuracy score(sklearn) = ', NB_eff)
 print('NB precision score(sklearn) = ', NB_precision)
+
+NB_eff = accuracy_score(y_test, NB_clf.predict(X_test))
+print('NB accuracy score(sklearn) = ', NB_eff)
+
+NB_Jscore = jaccard_score(y_test, NB_clf.predict(X_test))
 print('jaccard score, NB: ', NB_Jscore)
 
 cv_score_nb_eff = cross_val_score(NB_clf, X, y, cv=5, scoring='recall')
@@ -446,5 +477,5 @@ plt.title('ROC curve')
 plt.legend(loc='best')
 #plt.show()
 
-plt.savefig('/plots/ROC.pdf')
+#plt.savefig('/plots/ROC.pdf')
 plt.close()
