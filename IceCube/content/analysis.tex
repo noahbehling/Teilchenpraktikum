@@ -28,7 +28,7 @@ and $\texttt{GaussianNB}$ from $\texttt{sklearn}$ are used. in the case of $\tex
 the optimal number of trees and neighbours is determined analogously to the number of attributes by trying different values and choosing 
 the value with the largest jaccard index. The optimal values are $N_\text{trees} = 140$ and $N_\text{neighbours} = 90$.\\
 All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined with crossvalidation. 
-The values are listed in table ... \\
+The values are listed in table \ref{tab:results}. \\
 Finally a receiver operating characteristic is generated and pictured in figure \ref{fig:ROC}.
 
 \begin{figure}[tb]
@@ -37,3 +37,18 @@ Finally a receiver operating characteristic is generated and pictured in figure 
   \caption{ROC curves for the three differrent classifiers.}
   \label{fig:ROC}
 \end{figure}
+
+\begin{table}
+  \centering
+  \begin{tabular}{c | c c c}
+    \toprule
+    \text{Classifier} & \text{Efficiency} & \text{Purity} & \text{Jaccard index} \\
+    \midrule
+    \text{RandomForest} & $\num{0.9530 \pm  0.0093}$ & $\num{0.9654 \pm 0.0826}$ & $\num{0.9204 \pm 0.0710}$ \\
+    \text{KNeighborsClassifier} & $\num{0.8540 \pm 0.0215}$ & $\num{0.7661 \pm 0.0621}$ & $\num{0.6769 \pm 0.0407}$ \\
+    \text{Naive-Bayes} & $\num{0.7970 \pm 0.0528}$ & $\num{0.7980 \pm 0.0662}$ & $\num{0.6618 \pm 0.0212}$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Efficiency, purity and Jaccard index of the three classifiers applied to the data set.}
+  \label{tab:results}
+\end{table}
