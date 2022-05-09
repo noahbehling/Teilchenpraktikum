@@ -149,7 +149,7 @@ columns = [
 df_background.drop(columns, axis=1, inplace=True)
 # remove Monte-Carlo truths from background dataframe
 
-# drop von anderen Protokoll ###############################################################################
+# drop columns with key words that are associated with MC Simulation ###############################################################################
 
 df_signal = df_signal.drop(df_signal.filter(regex="MC").columns, axis=1)
 df_signal = df_signal.drop(df_signal.filter(regex="Weight").columns, axis=1)
@@ -163,9 +163,7 @@ df_signal = df_signal.drop(df_signal.filter(regex="NewID").columns, axis=1)
 df_background.drop(df_background.filter(regex="MC").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="Weight").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="Corsika").columns, axis=1, inplace=True)
-df_background.drop(
-    df_background.filter(regex="I3EventHeader").columns, axis=1, inplace=True
-)
+df_background.drop(df_background.filter(regex="I3EventHeader").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="end").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="start").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="time").columns, axis=1, inplace=True)
@@ -192,7 +190,7 @@ for feature in col_signal:
 
 for feature in col_background:
     if feature not in col_signal:
-        df_background.drop(att, axis=1, inplace=True)
+        df_background.drop(feature, axis=1, inplace=True)
 # remove columns from eother Dataframe that are not in the other dataframe
 
 data = [df_signal, df_background]
@@ -209,6 +207,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 # split the datafrme in a test- and a train-set whlie shuffeling the data
 
+print(len(X.columns))
+# print the number of features
 
 # next the optimal number of attributes will be determined by looking for the number with the highest Jaccard index with the naive bayes clasifier
 
@@ -287,7 +287,7 @@ X_test = X_test.loc[:, features]
 
 # find the optimal number of trees
 
-N_trees = np.linspace(10, 310, 11, dtype=int).tolist()
+N_trees = np.linspace(10, 150, 15, dtype=int).tolist()
 # list with the numbers of trees to be tested
 
 jac = []
@@ -390,7 +390,7 @@ print(
 
 # estimate best number for neighbours
 
-N_neighbours = np.linspace(10, 310, 11, dtype=int).tolist()
+N_neighbours = np.linspace(10, 50, 10, dtype=int).tolist()
 # list with the numbers of trees to be tested
 
 jac = []

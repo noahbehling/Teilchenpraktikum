@@ -1,4 +1,36 @@
 \section{Analysis}\label{sec:Analysis}
+
+\subsection{Data preparation}
+
+As the initial step of the analysis the data is prepared. 
+First all Monte-Carlo truths, event identification numbers and weights are removed so that only the simulated measurements and 
+event-labels which will later be used for supervised learning are left. In the next step all simulated measurement with missing or 
+infinite values are removed from the data. Furthermore all columns that contain te same value in every line are deleted. 
+Finally in both the simulated signal- and backgrounddata attributes which are not contained in the other are removed und 
+both datasets are combined to one. \\
+Finally the data is split in a test- and training-dataset while $80 \, \%$ of the data is used for training and $20 \,\%$ 
+for testing. 
+
+\subsection{Forward selection}
+
+In the next step of the analysis the number of features is reduced by determining the most important features using 
+the $\texttt{SelectKBest}$ with $\testtt{f_classif}$ from the $\texttt{sklearn}$ library and removing all other features. \\
+For this the dataset is sequentially reduced to $N \in \{ 10, \, 20, \, 30, \, 40, \, 40, \, 50, \, 60, \, 70, \, 80, \, 90, \, 100 \}$ 
+features and for each number of features the jaccard index is determined for the Naive-Bayes Classifier \texttt{GaussianNB}. 
+In the end the number of features that yields the highest jaccard index is selected for the analysis. 
+In the run used for the analysis the best jaccard index was archieved for $50$ features. \\
+The best $50$ features are determined using \texttt{SelectKBest} and all other features are removed from the data. 
+
+\subsection{The classifiers}
+
+For the seperation of the singal data from the background data the classifiers $\texttt{RandomForestClassifier}$, $\texttt{KNeighborsClassifier}$
+and $\texttt{GaussianNB}$ from $\texttt{sklearn}$ are used. in the case of $\texttt{RandomForestClassifier}$ and  $\texttt{KNeighborsClassifier}$ 
+the optimal number of trees and neighbours is determined analogously to the number of attributes by trying different values and choosing 
+the value with the largest jaccard index. The optimal values are $N_\text{trees} = 140$ and $N_\text{neighbours} = 90$.\\
+All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined with crossvalidation. 
+The values are listed in table ... \\
+Finally a receiver operating characteristic is generated and pictured in figure \ref{fig:ROC}.
+
 \begin{figure}[tb]
   \centering
   \includegraphics[width=12cm,keepaspectratio]{plots/ROC.pdf}
