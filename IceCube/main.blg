@@ -1,0 +1,19 @@
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
+[0] Config.pm:307> INFO - Logfile is 'main.blg'
+[95] biber:322> INFO - === Mo Mai  9, 2022, 22:15:55
+[109] Biber.pm:415> INFO - Reading 'main.bcf'
+[195] Biber.pm:940> INFO - Using all citekeys in bib section 0
+[220] Biber.pm:4256> INFO - Processing section 0
+[220] Utils.pm:75> INFO - Globbing data source 'lit.bib'
+[220] Utils.pm:91> INFO - Globbed data source 'lit.bib' to lit.bib
+[244] Biber.pm:4455> INFO - Looking for bibtex format file 'lit.bib' for section 0
+[250] bibtex.pm:1653> INFO - LaTeX decoding ...
+[293] bibtex.pm:1471> INFO - Found BibTeX data source 'lit.bib'
+[619] Utils.pm:293> WARN - month field 'Apr' in entry 'Fermi' is not an integer - this will probably not sort properly.
+[1411] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1411] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1411] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[1411] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
+[1465] bbl.pm:652> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[2405] bbl.pm:755> INFO - Output to main.bbl
+[2405] Biber.pm:128> INFO - WARNINGS: 1

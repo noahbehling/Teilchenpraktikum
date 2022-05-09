@@ -1,1 +1,12 @@
 \section{Diskussion}\label{sec:Durchführung}
+
+The best result in efficiency, purity and the jaccard index was archieved with the Random Forest classifier while the ROC curve 
+is also closest to the ideal curve. \\
+It is clear from figure \ref{fig:ROC} that the second closest curve to the ideal curve is that of the kNN classifier while 
+it archieves an efficiency above, a purity below and a jaccard index above that of the Naive-Bayes classifier. 
+The performance of the kNN classifier being so close to the Naive-Bayes classifier could be caused by the use of 
+to many neighbours leading to to many classes in a bunch and leading to worse predictions. 
+Therefore it would be interesting for further investigation if the used algorithm would perform better 
+if the criterium for selecting the optimal number of used neighbours is changed. \\
+Overall it is clear that the Random Forest classifier seperates the signal from the background most successfully 
+and is therfore best fitted to the task, assuming that computing time does not play a role in the selection of the algorithm.

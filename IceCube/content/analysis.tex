@@ -2,6 +2,8 @@
 
 \subsection{Data preparation}
 
+The data used consists of a dataset containing signals generated in a Monte-Carlo simulation and one dataset containing 
+background signals also generated in a Monte-Carlo simulation. \\
 As the initial step of the analysis the data is prepared.
 First all Monte-Carlo truths, event identification numbers and weights are removed so that only the simulated measurements and
 event-labels which will later be used for supervised learning are left. In the next step all simulated measurement with missing or
@@ -14,22 +16,25 @@ for testing.
 \subsection{Forward selection}
 
 In the next step of the analysis the number of features is reduced by determining the most important features using
-the \texttt{SelectKBest} with \texttt{$f_classif$} from the \texttt{sklearn} library and removing all other features. \\
-For this the dataset is sequentially reduced to $N \in \{ 10, \, 20, \, 30, \, 40, \, 40, \, 50, \, 60, \, 70, \, 80, \, 90, \, 100 \}$
-features and for each number of features the jaccard index is determined for the Naive-Bayes Classifier \texttt{GaussianNB}.
+the \texttt{SelectKBest} with \texttt{$f\_classif$} from the \texttt{sklearn} library and removing all other features \cite{scikit-learn}. \\
+For this the dataset is sequentially reduced to \\
+$N \in \{ 10, \, 20, \, 30, \, 40, \, 40, \, 50, \, 60, \, 70, \, 80, \, 90, \, 100 \}$
+features and for each number of features the jaccard index is determined for the Naive-Bayes Classifier \texttt{GaussianNB} \cite{scikit-learn}.
 In the end the number of features that yields the highest jaccard index is selected for the analysis.
 In the run used for the analysis the best jaccard index was archieved for $50$ features. \\
 The best $50$ features are determined using \texttt{SelectKBest} and all other features are removed from the data.
 
 \subsection{The classifiers}
 
-For the seperation of the singal data from the background data the classifiers $\texttt{RandomForestClassifier}$, $\texttt{KNeighborsClassifier}$
-and $\texttt{GaussianNB}$ from $\texttt{sklearn}$ are used. in the case of $\texttt{RandomForestClassifier}$ and  $\texttt{KNeighborsClassifier}$
+For the seperation of the singal data from the background data the classifiers \\ 
+\texttt{RandomForestClassifier}, \texttt{KNeighborsClassifier}
+and \texttt{GaussianNB} from \texttt{sklearn} are used. in the case of \texttt{RandomForestClassifier} and  \texttt{KNeighborsClassifier}
 the optimal number of trees and neighbours is determined analogously to the number of attributes by trying different values and choosing
-the value with the largest jaccard index. The optimal values are $N_\text{trees} = 140$ and $N_\text{neighbours} = 90$.\\
-All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined with crossvalidation.
+the value with the largest jaccard index. The optimal values are $N_\text{trees} = 80$ and $N_\text{neighbours} = 50$.\\
+All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined by cross validation using 
+the method \texttt{cross\_val\_score} \cite{scikit-learn}.
 The values are listed in table \ref{tab:results}. \\
-Finally a receiver operating characteristic is generated and pictured in figure \ref{fig:ROC}.
+Finally a receiver operating characteristic is generated utilising the function \texttt{roc\_curve} and pictured in figure \ref{fig:ROC}.
 
 \begin{figure}[tb]
   \centering
@@ -44,11 +49,11 @@ Finally a receiver operating characteristic is generated and pictured in figure 
     \toprule
     \text{Classifier} & \text{Efficiency} & \text{Purity} & \text{Jaccard index} \\
     \midrule
-    \text{RandomForest} & $\num{0.9530 \pm  0.0093}$ & $\num{0.9654 \pm 0.0826}$ & $\num{0.9204 \pm 0.0710}$ \\
+    \text{RandomForest} & $\num{0.9525 \pm 0.0085}$ & $\num{0.9651 \pm 0.0829}$ & $\num{0.9187 \pm 0.0757}$ \\
     \text{KNeighborsClassifier} & $\num{0.8540 \pm 0.0215}$ & $\num{0.7661 \pm 0.0621}$ & $\num{0.6769 \pm 0.0407}$ \\
     \text{Naive-Bayes} & $\num{0.7970 \pm 0.0528}$ & $\num{0.7980 \pm 0.0662}$ & $\num{0.6618 \pm 0.0212}$ \\
     \bottomrule
   \end{tabular}
-  \caption{Efficiency, purity and Jaccard index of the three classifiers applied to the data set.}
+  \caption{Efficiency, purity and Jaccard index of the three classifiers applied to the data set with error estimated by cross validation \cite{scikit-learn}.}
   \label{tab:results}
 \end{table}

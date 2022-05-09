@@ -13,143 +13,8 @@ from sklearn.metrics import roc_curve, precision_score, accuracy_score, jaccard_
 df_signal = pd.read_csv("data/signal.csv", delimiter=";")
 df_background = pd.read_csv("data/background.csv", delimiter=";")
 
-# the first step will be the preparation of the data
 
-columns = [
-    "CorsikaWeightMap.SpectrumType",
-    "CorsikaWeightMap.TimeScale",
-    "CorsikaWeightMap.AreaSum",
-    "CorsikaWeightMap.Atmosphere",
-    "CorsikaWeightMap.CylinderLength",
-    "CorsikaWeightMap.CylinderRadius",
-    "CorsikaWeightMap.DiplopiaWeight",
-    "CorsikaWeightMap.EnergyPrimaryMax",
-    "CorsikaWeightMap.EnergyPrimaryMin",
-    "CorsikaWeightMap.FluxSum",
-    "CorsikaWeightMap.Multiplicity",
-    "CorsikaWeightMap.SpectralIndexChange",
-    "CorsikaWeightMap.Weight",
-    "I3MCWeightDict.ActiveLengthAfter",
-    "I3MCWeightDict.ActiveLengthBefore",
-    "I3MCWeightDict.AutoExtension",
-    "I3MCWeightDict.EnergyLost",
-    "I3MCWeightDict.GeneratorVolume",
-    "I3MCWeightDict.InIceNeutrinoEnergy",
-    "I3MCWeightDict.InjectionSurfaceR",
-    "I3MCWeightDict.InteractionColumnDepth",
-    "I3MCWeightDict.InteractionCrosssection",
-    "I3MCWeightDict.InteractionType",
-    "I3MCWeightDict.LengthInVolume",
-    "I3MCWeightDict.MaxAzimuth",
-    "I3MCWeightDict.MaxEnergyLog",
-    "I3MCWeightDict.MaxZenith",
-    "I3MCWeightDict.MinAzimuth",
-    "I3MCWeightDict.MinEnergyLog",
-    "I3MCWeightDict.MinZenith",
-    "I3MCWeightDict.NeutrinoImpactParameter",
-    "I3MCWeightDict.OneWeight",
-    "I3MCWeightDict.PowerLawIndex",
-    "I3MCWeightDict.PrimaryNeutrinoEnergy",
-    "I3MCWeightDict.RangeInMeter",
-    "I3MCWeightDict.RangeInMeterWaterEquiv",
-    "I3MCWeightDict.TotalColumnDepth",
-    "I3MCWeightDict.TotalCrosssection",
-    "I3MCWeightDict.TotalDetectionLength",
-    "I3MCWeightDict.TotalInteractionProbability",
-    "I3MCWeightDict.TotalInteractionProbabilityWeight",
-    "I3MCWeightDict.TotalPropagationProbability",
-    "I3MCWeightDict.TrueActiveLengthAfter",
-    "I3MCWeightDict.TrueActiveLengthBefore",
-    "MCECenter.value",
-    "MCMostEnergeticInIce.x",
-    "MCMostEnergeticInIce.y",
-    "MCMostEnergeticInIce.z",
-    "MCMostEnergeticInIce.time",
-    "MCMostEnergeticInIce.zenith",
-    "MCMostEnergeticInIce.azimuth",
-    "MCMostEnergeticInIce.energy",
-    "MCMostEnergeticInIce.length",
-    "MCMostEnergeticInIce.type",
-    "MCMostEnergeticInIce.fit_status",
-    "MCMostEnergeticTrack.x",
-    "MCMostEnergeticTrack.y",
-    "MCMostEnergeticTrack.z",
-    "MCMostEnergeticTrack.time",
-    "MCMostEnergeticTrack.zenith",
-    "MCMostEnergeticTrack.azimuth",
-    "MCMostEnergeticTrack.energy",
-    "MCMostEnergeticTrack.length",
-    "MCMostEnergeticTrack.type",
-    "MCMostEnergeticTrack.fit_status",
-    "MCPrimary1.x",
-    "MCPrimary1.y",
-    "MCPrimary1.z",
-    "MCPrimary1.time",
-    "MCPrimary1.zenith",
-    "MCPrimary1.azimuth",
-    "MCPrimary1.energy",
-    "MCPrimary1.length",
-    "MCPrimary1.type",
-    "MCPrimary1.fit_status",
-    "Weight.HoSa",
-    "Weight.Ho",
-    "Weight.Sa",
-    "Weight.Astro2",
-    "MPEFitHighNoiseFitParams.logl",
-    "MPEFitHighNoiseFitParams.rlogl",
-]
-
-df_signal.drop(columns, axis=1, inplace=True)
-# remove Monte-Carlo truths in the signal dataframe
-
-columns = [
-    "CorsikaWeightMap.AreaSum",
-    "CorsikaWeightMap.Atmosphere",
-    "CorsikaWeightMap.CylinderLength",
-    "CorsikaWeightMap.CylinderRadius",
-    "CorsikaWeightMap.DiplopiaWeight",
-    "CorsikaWeightMap.EnergyPrimaryMax",
-    "CorsikaWeightMap.EnergyPrimaryMin",
-    "CorsikaWeightMap.FluxSum",
-    "CorsikaWeightMap.Multiplicity",
-    "CorsikaWeightMap.ParticleType",
-    "CorsikaWeightMap.Polygonato",
-    "CorsikaWeightMap.PrimarySpectralIndex",
-    "CorsikaWeightMap.TimeScale",
-    "CorsikaWeightMap.Weight",
-    "MCECenter.value",
-    "MCMostEnergeticInIce.x",
-    "MCMostEnergeticInIce.y",
-    "MCMostEnergeticInIce.z",
-    "MCMostEnergeticInIce.time",
-    "MCMostEnergeticInIce.zenith",
-    "MCMostEnergeticInIce.azimuth",
-    "MCMostEnergeticInIce.energy",
-    "MCMostEnergeticInIce.length",
-    "MCMostEnergeticInIce.type",
-    "MCMostEnergeticInIce.fit_status",
-    "MCPrimary1.x",
-    "MCPrimary1.y",
-    "MCPrimary1.z",
-    "MCPrimary1.time",
-    "MCPrimary1.zenith",
-    "MCPrimary1.azimuth",
-    "MCPrimary1.energy",
-    "MCPrimary1.length",
-    "MCPrimary1.type",
-    "MCPrimary1.fit_status",
-    "Weight.Ho",
-    "Weight.Sa",
-    "Weight.Astro2",
-    "Weight.HoSa",
-    "MPEFitHighNoiseFitParams.logl",
-    "MPEFitHighNoiseFitParams.rlogl",
-]
-
-df_background.drop(columns, axis=1, inplace=True)
-# remove Monte-Carlo truths from background dataframe
-
-# drop columns with key words that are associated with MC Simulation ###############################################################################
+# drop columns with key words that are associated with MC Simulation 
 
 df_signal = df_signal.drop(df_signal.filter(regex="MC").columns, axis=1)
 df_signal = df_signal.drop(df_signal.filter(regex="Weight").columns, axis=1)
@@ -168,8 +33,6 @@ df_background.drop(df_background.filter(regex="end").columns, axis=1, inplace=Tr
 df_background.drop(df_background.filter(regex="start").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="time").columns, axis=1, inplace=True)
 df_background.drop(df_background.filter(regex="NewID").columns, axis=1, inplace=True)
-
-############################################################################################################
 
 
 df_signal.replace({np.inf: np.nan, -np.inf: np.nan}, value=None, inplace=True)
@@ -357,25 +220,16 @@ y_pred = y_pred[:, 1]
 fpr1, tpr1, thr1 = roc_curve(y_test, y_pred)
 # get estimates of false positive rate, true positive rate and thr
 
-RFC_precision = precision_score(y_test, RFClf.predict(X_test))
-print("RFC precision score(sklearn) = ", RFC_precision)
-
-RFC_eff = accuracy_score(y_test, RFClf.predict(X_test))
-print("RFC accuracy score(sklearn) = ", RFC_eff)
-
-rfc_Jscore = jaccard_score(y_test, RFClf.predict(X_test))
-print("jaccard score, RFC: ", rfc_Jscore)
-# generate accuracy, precision and jaccard score
 
 cv_score_rfc_eff = cross_val_score(RFClf, X, y, cv=5, scoring="recall")
 print(
-    "Effizienz: %0.4f (+/- %0.4f)"
+    "Efficiency: %0.4f (+/- %0.4f)"
     % (cv_score_rfc_eff.mean(), cv_score_rfc_eff.std() * 2)
 )
 
 cv_score_rfc_rein = cross_val_score(RFClf, X, y, cv=5, scoring="precision")
 print(
-    "Reinheit: %0.4f (+/- %0.4f)"
+    "Purity: %0.4f (+/- %0.4f)"
     % (cv_score_rfc_rein.mean(), cv_score_rfc_rein.std() * 2)
 )
 
@@ -449,24 +303,16 @@ PRED_knn = knn_clf.predict_proba(X_test)
 PRED_knn = PRED_knn[:, 1]
 fpr2, tpr2, thr2 = roc_curve(y_test, PRED_knn)
 
-knn_precision = precision_score(y_test, knn_clf.predict(X_test))
-print("KNN precision score(sklearn) = ", knn_precision)
-
-knn_eff = accuracy_score(y_test, knn_clf.predict(X_test))
-print("KNN accuracy score(sklearn) = ", knn_eff)
-
-knn_Jscore = jaccard_score(y_test, knn_clf.predict(X_test))
-print("jaccard score, kNN: ", knn_Jscore)
 
 cv_score_knn_eff = cross_val_score(knn_clf, X, y, cv=5, scoring="recall")
 print(
-    "Effizienz: %0.4f (+/- %0.4f)"
+    "Efficiency: %0.4f (+/- %0.4f)"
     % (cv_score_knn_eff.mean(), cv_score_knn_eff.std() * 2)
 )
 
 cv_score_knn_rein = cross_val_score(knn_clf, X, y, cv=5, scoring="precision")
 print(
-    "Reinheit: %0.4f (+/- %0.4f)"
+    "Purity: %0.4f (+/- %0.4f)"
     % (cv_score_knn_rein.mean(), cv_score_knn_rein.std() * 2)
 )
 
@@ -485,23 +331,15 @@ NB_pred = NB_clf.predict_proba(X_test)
 NB_pred = NB_pred[:, 1]
 fpr3, tpr3, thr3 = roc_curve(y_test, NB_pred)
 
-NB_precision = precision_score(y_test, NB_clf.predict(X_test))
-print("NB precision score(sklearn) = ", NB_precision)
-
-NB_eff = accuracy_score(y_test, NB_clf.predict(X_test))
-print("NB accuracy score(sklearn) = ", NB_eff)
-
-NB_Jscore = jaccard_score(y_test, NB_clf.predict(X_test))
-print("jaccard score, NB: ", NB_Jscore)
 
 cv_score_nb_eff = cross_val_score(NB_clf, X, y, cv=5, scoring="recall")
 print(
-    "Effizienz: %0.4f (+/- %0.4f)" % (cv_score_nb_eff.mean(), cv_score_nb_eff.std() * 2)
+    "Efficiency: %0.4f (+/- %0.4f)" % (cv_score_nb_eff.mean(), cv_score_nb_eff.std() * 2)
 )
 
 cv_score_nb_rein = cross_val_score(NB_clf, X, y, cv=5, scoring="precision")
 print(
-    "Reinheit: %0.4f (+/- %0.4f)"
+    "Purity: %0.4f (+/- %0.4f)"
     % (cv_score_nb_rein.mean(), cv_score_nb_rein.std() * 2)
 )
 
@@ -518,7 +356,7 @@ plt.plot(fpr2, tpr2, label="kNN ROC, NN = {}".format(neighbours))
 plt.plot(fpr1, tpr1, label="Random Forest ROC, {} trees".format(trees))
 plt.xlabel("False positive rate")
 plt.ylabel("True positive rate")
-plt.yscale("log")
+#plt.yscale("log")
 plt.title("ROC curve")
 plt.legend(loc="best")
 # plt.show()
