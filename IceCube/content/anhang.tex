@@ -1,4 +1,10 @@
 \section{Appendix}
 \label{sec:anhang}
-
+\subsection{Code used for Analysis}
 \lstinputlisting[language=Python]{plot.py}
+
+\begin{align}
+     & F(x) &= \int_{x_\text{min}}^x N x^\prime^{-n} \, dx^\prime \\ 
+\iff & F(x) &= \frac{N}{n+1} (x_\text{min}^{1-n} - x^{1-n}) \\
+\iff & F(x) &= \frac{x_\text{min}^{1-n} - x^{1-n}}{ x_\text{min}^{1-n} - x_\text{max}^{1-n}} .
+\end{align}

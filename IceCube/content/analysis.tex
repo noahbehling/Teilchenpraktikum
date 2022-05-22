@@ -1,6 +1,6 @@
 \section{Analysis}\label{sec:Analysis}
 
-\subsection{Data preparation}
+\subsection{Data Preparation}
 
 The data used consists of a dataset containing signals generated in a Monte-Carlo simulation and one dataset containing 
 background signals also generated in a Monte-Carlo simulation. \\
@@ -13,7 +13,7 @@ both datasets are combined to one. \\
 Finally the data is split in a test- and training-dataset while $80 \, \%$ of the data is used for training and $20 \,\%$
 for testing.
 
-\subsection{Forward selection}
+\subsection{Forward Selection}
 
 In the next step of the analysis the number of features is reduced by determining the most important features using
 the \texttt{SelectKBest} with \texttt{$f\_classif$} from the \texttt{sklearn} library and removing all other features \cite{scikit-learn}. \\
@@ -24,22 +24,22 @@ In the end the number of features that yields the highest jaccard index is selec
 In the run used for the analysis the best jaccard index was archieved for $50$ features. \\
 The best $50$ features are determined using \texttt{SelectKBest} and all other features are removed from the data.
 
-\subsection{The classifiers}
+\subsection{Training the Classifiers}
 
 For the seperation of the singal data from the background data the classifiers \\ 
 \texttt{RandomForestClassifier}, \texttt{KNeighborsClassifier}
 and \texttt{GaussianNB} from \texttt{sklearn} are used. in the case of \texttt{RandomForestClassifier} and  \texttt{KNeighborsClassifier}
 the optimal number of trees and neighbours is determined analogously to the number of attributes by trying different values and choosing
-the value with the largest jaccard index. The optimal values are $N_\text{trees} = 80$ and $N_\text{neighbours} = 50$.\\
+the value with the largest jaccard index. The optimal values are $N_\text{trees} = 80$ and $N_\text{neighbours} = 50$ \cite{scikit-learn}.\\
 All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined by cross validation using 
 the method \texttt{cross\_val\_score} \cite{scikit-learn}.
 The values are listed in table \ref{tab:results}. \\
-Finally a receiver operating characteristic is generated utilising the function \texttt{roc\_curve} and pictured in figure \ref{fig:ROC}.
+Finally a receiver operating characteristic is generated utilising the function \texttt{roc\_curve} and pictured in figure \ref{fig:ROC} \cite{scikit-learn}.
 
 \begin{figure}[tb]
   \centering
   \includegraphics[width=12cm,keepaspectratio]{plots/ROC.pdf}
-  \caption{ROC curves for the three differrent classifiers.}
+  \caption{Determined ROC curves for the used classifiers.}
   \label{fig:ROC}
 \end{figure}
 

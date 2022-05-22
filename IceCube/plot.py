@@ -349,7 +349,7 @@ print(
 )
 
 
-# all into one plot
+# all into one happy plot
 
 plt.plot(fpr3, tpr3, label="Naive Bayes ROC")
 plt.plot(fpr2, tpr2, label="kNN ROC, NN = {}".format(neighbours))
