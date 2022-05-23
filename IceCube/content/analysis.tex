@@ -2,7 +2,7 @@
 
 \subsection{Data Preparation}
 
-The data used consists of a dataset containing signals generated in a Monte-Carlo simulation and one dataset containing 
+The data used consists of a dataset containing signals generated in a Monte-Carlo simulation and one dataset containing
 background signals also generated in a Monte-Carlo simulation. \\
 As the initial step of the analysis the data is prepared.
 First all Monte-Carlo truths, event identification numbers and weights are removed so that only the simulated measurements and
@@ -16,7 +16,7 @@ for testing.
 \subsection{Forward Selection}
 
 In the next step of the analysis the number of features is reduced by determining the most important features using
-the \texttt{SelectKBest} with \texttt{$f\_classif$} from the \texttt{sklearn} library and removing all other features \cite{scikit-learn}. \\
+the \texttt{SelectKBest} with \texttt{$f_{classif}$} from the \texttt{sklearn} library and removing all other features \cite{scikit-learn}. \\
 For this the dataset is sequentially reduced to \\
 $N \in \{ 10, \, 20, \, 30, \, 40, \, 40, \, 50, \, 60, \, 70, \, 80, \, 90, \, 100 \}$
 features and for each number of features the jaccard index is determined for the Naive-Bayes Classifier \texttt{GaussianNB} \cite{scikit-learn}.
@@ -26,12 +26,12 @@ The best $50$ features are determined using \texttt{SelectKBest} and all other f
 
 \subsection{Training the Classifiers}
 
-For the seperation of the singal data from the background data the classifiers \\ 
+For the seperation of the singal data from the background data the classifiers \\
 \texttt{RandomForestClassifier}, \texttt{KNeighborsClassifier}
 and \texttt{GaussianNB} from \texttt{sklearn} are used. in the case of \texttt{RandomForestClassifier} and  \texttt{KNeighborsClassifier}
 the optimal number of trees and neighbours is determined analogously to the number of attributes by trying different values and choosing
-the value with the largest jaccard index. The optimal values are $N_\text{trees} = 80$ and $N_\text{neighbours} = 50$ \cite{scikit-learn}.\\
-All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined by cross validation using 
+the value with the largest jaccard index. The optimal values are $N_\text{trees} = 80$ and $N_\text{neighbours} = 50$.\\
+All classifiers are trained on the training data and the jaccard index, purity and efficiency are determined by cross validation using
 the method \texttt{cross\_val\_score} \cite{scikit-learn}.
 The values are listed in table \ref{tab:results}. \\
 Finally a receiver operating characteristic is generated utilising the function \texttt{roc\_curve} and pictured in figure \ref{fig:ROC} \cite{scikit-learn}.
@@ -45,6 +45,7 @@ Finally a receiver operating characteristic is generated utilising the function 
 
 \begin{table}
   \centering
+  \caption{Efficiency, purity and Jaccard index of the three classifiers applied to the data set with error estimated by cross validation \cite{scikit-learn}.}
   \begin{tabular}{c | c c c}
     \toprule
     \text{Classifier} & \text{Efficiency} & \text{Purity} & \text{Jaccard index} \\
@@ -54,6 +55,5 @@ Finally a receiver operating characteristic is generated utilising the function 
     \text{Naive-Bayes} & $\num{0.7970 \pm 0.0528}$ & $\num{0.7980 \pm 0.0662}$ & $\num{0.6618 \pm 0.0212}$ \\
     \bottomrule
   \end{tabular}
-  \caption{Efficiency, purity and Jaccard index of the three classifiers applied to the data set with error estimated by cross validation \cite{scikit-learn}.}
   \label{tab:results}
 \end{table}

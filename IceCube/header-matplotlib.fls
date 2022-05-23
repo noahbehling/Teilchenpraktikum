@@ -1,7 +1,0 @@
-PWD /home/felix/Desktop/modules/Teilchenpraktikum/IceCube
-INPUT /etc/texmf/web2c/texmf.cnf
-INPUT /usr/share/texmf/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/latex.fmt
-INPUT header-matplotlib.tex
-OUTPUT header-matplotlib.log
