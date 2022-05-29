@@ -1,2 +1,23 @@
-\section{Durchführung}
+\section{Datasets}
 \label{sec:Durchführung}
+For the analysis three different datasets available at \href{https://factdata.app.tu-dortmund.de/fp2/}{https://factdata.app.tu-dortmund.de/fp2/} are being used: 
+\begin{itemize}
+    \item \texttt{open\_crab\_sample\_d13.hdf5}: reconstructed measurements from $17.7 \, \text{h}$ of observation of the crab nebula with FACT
+    \item \texttt{gamma\_test\_d13.hdf5}: reconstructed simulated $\gamma$-events
+    \item \texttt{gamma\_corsica\_headers.hdf5}: information about the simulated gamma air showers .
+\end{itemize}
+These datasets, except for the last one, are the result of the reconstruction of the type of particle, energy of the particle and direction 
+of origin with the software \texttt{FACT-Tools} version $1.1.2$ from either simulated or measured data \cite{FACT-tools}. \\
+For the simulated data the airshowers and cherenkov production have been simulated with \texttt{CORSIKA}\cite{CORSIKA} while the detector response has been simulated with 
+\texttt{CERES}. The resulting data has the same format as the data directly from the telescope except that the initial events are known. 
+Three different datasets have been simulated using this method:
+\begin{enumerate}
+    \item $\gamma$-rays originating froim a point like source observed in the wobble-mode
+    \item diffuse $\gamma$-rays originating from random directions in the field of view of the telescope
+    \item diffuse protons originating from random directions in the field of view of the telescope.
+\end{enumerate}
+The dataset of simulated events \texttt{gamma\_test\_d13.hdf5} contains $70 \, \%$ of the simulated events.
+A Random Forest Regressor is trained on the dataset as an energy estimater and a Random Forest Classifier is trained to distinguish between diffuse 
+$\gamma$-rais and protons.
+
+\section{Strategy}
