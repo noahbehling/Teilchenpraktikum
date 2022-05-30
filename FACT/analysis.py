@@ -6,7 +6,6 @@ from scipy.stats import poisson
 from fact.io import read_h5py
 import pandas as pd
 import boost_histogram as bh
-import os
 
 # Daten laden
 sim = read_h5py("Data/gamma_test_dl3.hdf5", mode="r+", key="events")
@@ -57,7 +56,7 @@ plt.xlim(0, 0.3)
 plt.ylim(0, 400)
 plt.legend(loc=0)
 plt.tight_layout()
-# plt.savefig("plots/theta_square.pdf")
+plt.savefig("plots/theta_square.pdf")
 plt.clf()
 
 # Cut on theta^2
@@ -111,6 +110,13 @@ w, xe, xi = E_hist.to_numpy(flow=True)
 print("Matrix: ", w)
 w = w / np.sum(w, axis=0)
 
+plt.matshow(w)
+plt.xlabel("True energy / GeV")
+plt.ylabel("Predicted energy / GeV")
+plt.colorbar()
+plt.savefig("plots/Matrix.pdf")
+plt.close()
+
 # Unfolding with naive SVD
 print("Matrix after normalising: ", w)
 w_inv = np.linalg.pinv(w)
@@ -131,7 +137,7 @@ diff_unc = g_unc - b_unc
 fNSVD = w_inv @ diff
 fNSVD = fNSVD[1:-1]
 fNSVD_unc = w_inv.dot(diff_unc)[1:-1]
-print("fNSVD: ", fNSVD)
+print("fNSVD: ", fNSVD_unc)
 xi = xi[1:-1]
 xerr = np.array([xi[i] - xi[i - 1] for i in range(1, len(xi))])
 xerr = xerr / 2
@@ -168,6 +174,7 @@ hess = est["hess_inv"].todense()
 diag_cov = np.diag(hess)
 std_devs = np.sqrt(diag_cov)[1:-1]
 fPoisson_unc = unp.uarray(fPoisson, std_devs)
+print("fPoisson: ", fPoisson_unc)
 
 plt.errorbar(E_hist.axes[1].centers, fPoisson, xerr=xerr, yerr=std_devs, fmt="C0+")
 plt.semilogx()
@@ -220,6 +227,7 @@ N_sim, Ne = sim_hist.to_numpy()
 N_sel = f[1:-1]
 
 A_eff = N_sel / N_sim * A / 0.7
+print("Effective Detection Area: ", A_eff)
 
 
 def flux(f, A, dE, t):
@@ -228,6 +236,9 @@ def flux(f, A, dE, t):
 
 flux_NSVD = flux(fNSVD_unc, A_eff, dE, t_obs)
 flux_Poisson = flux(fPoisson_unc, A_eff, dE, t_obs)
+
+print("NSVD flux: ", flux_NSVD)
+print("Poisson flux: ", flux_Poisson)
 
 plt.errorbar(
     E_hist.axes[1].centers * 0.99,
