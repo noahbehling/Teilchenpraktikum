@@ -1,4 +1,4 @@
-*.pdf
+John_plots/
 build/
 *.DS_Store
 *Data/
