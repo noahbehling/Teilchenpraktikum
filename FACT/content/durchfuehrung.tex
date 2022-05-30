@@ -18,14 +18,14 @@ Three different datasets have been simulated using this method:
 \end{enumerate}
 The dataset of simulated events \texttt{gamma\_test\_d13.hdf5} contains $70 \, \%$ of the simulated events.
 A Random Forest Regressor is trained on the dataset as an energy estimater and a Random Forest Classifier is trained to distinguish between diffuse 
-$\gamma$-rais and protons.
+$\gamma$-rays and protons.
 
 \section{Strategy}
-For the analysis only events that are classified by the Random Forest Classifier as $\gamma$-radiation with a confidence $\geq 0.8$ are chosen. \\
+For the analysis events that are classified by the Random Forest Classifier as $\gamma$-radiation with a confidence $\geq 0.8$ are chosen. \\
 After this a $\theta²$-plot is created with the measured values that have a distance from the on- or off-positions $\theta² \leq 0.025°²$ \\
 Next the energy migrationmatrix of the Random Forest Regressor with logarithmically equidistant bins between $500 \, \si{\giga\eV}$ 
 and $15 \, \si{\tera\eV}$ is determined. Utilizing the energy migrationmatrix and the background estimate from the wobble-mode 
-a Naive SVD-deconvolution and a Poisson-Likelihood deconvolution is performed.\\
+a Naive SVD-deconvolution and a Poisson-Likelihood deconvolution are performed.\\
 For the determined values an acceptance correction is performed, where it is important that only $70 \%$ of the simulated events are used, 
 and the flux is calculated.\\
-Finally the result are compared to the publicised results of the MAGIC- and HERA-collaboration.
+Finally the results are compared to the publicised results of the MAGIC- and HERA-collaboration.

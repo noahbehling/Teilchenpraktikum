@@ -15,7 +15,7 @@ The observed objects are the Crab-Nebula and mainly blazars.
   \end{figure}
 The telescope is operated in the wobble mode which enables it to observe sources of $\gamma$-radiation in the sky while also getting an estimate for the 
 background radiation. In the mode it is aimed $0.6 °$ next to the observed source. The estimated region where the source is located is called the on-region 
-while five geometrically equivalent points are selected, which are called off-regions, are selected to estimate the background as depicted in figure 
+while five geometrically equivalent points are selected, which are called off-regions, to estimate the background as depicted in figure 
 \ref{fig:OnOff}. 
 
 \begin{figure}[H]
@@ -25,7 +25,7 @@ while five geometrically equivalent points are selected, which are called off-re
     \label{fig:OnOff}
 \end{figure}
 
-To calculate the significance of the measurement is calculated with the Likelihood-Ratio-Test 
+The significance of the measurement is calculated with the Likelihood-Ratio-Test 
 
 \begin{equation}
     S = \sqrt{2} \cdot \sqrt{N_\text{on} \ln \biggl( \frac{1+ \alpha}{\alpha} \biggl( \frac{N_\text{on}}{N_\text{on} + N_\text{off}} \biggr) \biggr) 
@@ -39,19 +39,19 @@ on- and off-regions, therefore here $\alpha = \frac{1}{5}$.
 
 In experiment the physical quantities of interest are usually not measured directly but have to be extracted from the distribution of the signals 
 produced by a detector $g(y)$ depending on an ensemble of observables $y$. 
-This inverse problem can be written as the integral-equation 
+This inverse problem can be written as the integral equation 
 \begin{equation}
     g(y) = \int A(y, \, x) f(x) \, dx + b(y)
 \end{equation}
 where $A(y, \, x)$ is the detector response function that describes how a physical quantites $x$ are converted into observables $y$ by the detector, $f(x)$ 
-is the measured distribution of physical quantities to be extracted from the data and $b(y)$ is the background for the measurement. \\
-One way to solve such a problem is to discretize the data to receiva an equation of the form 
+is the distribution of physical quantities to be extracted from the data and $b(y)$ is the background for the measurement. \\
+One way to solve such a problem is to discretize the data to receive an equation of the form 
 \begin{equation}
     \vec{g} = \textbf{A} \cdot \vec {f} + \vec{b}
     \label{eq:disc_inv}
 \end{equation}
-where $\vec{g}$ and $\vec {b}$ are the $N$-dimensional vectors containing the histograms of the observable and the background, $\textbf{A}$ is the 
-$M\times N$ migrationmatrix and $\vec{f}$ the $M$-dimensional vector containing the histogram of physical quantity of interest. \\
+where $\vec{g}$ and $\vec {b}$ are the $M$-dimensional vectors containing the histograms of the observable and the background, $\textbf{A}$ is the 
+$M\times N$ migrationmatrix and $\vec{f}$ the $N$-dimensional vector containing the histogram of physical quantity of interest. \\
 The goal here is to find an estimator $\hat{\vec{f}}(\textbf{A}, \, \vec{g}, \, \vec{b})$ with which the distribution of the pyhsical quantity of interest 
 can be determined if $\textbf{A}$, $\vec{g}$ and $\vec{b}$ are known.
 
