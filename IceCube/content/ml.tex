@@ -1,5 +1,5 @@
 \section{Multivariate Selection and Machine Learning}
-To save computation time, it is useful to study only a subset of the attributes available since not all of them contain the same information value. A method to find a subset of valuable attributes while limiting computation time is forward selection, where iteratively the attribute is added to the model that results in the best prediction in combination with the attributes already chosen. Hereby usually an F-test is performed to evaluate the quality of the prediction. it is noteworthy that the selection of attributes is not objective, but depends on the learning algorithm that is used.
+To save computation time, it is useful to study only a subset of the attributes available since not all of them contain the same information value. A method to find a subset of valuable attributes while limiting computation time is forward selection, where iteratively the attribute is added to the model that results in the best prediction in combination with the attributes already chosen. Hereby usually an F-test is performed to evaluate the quality of the prediction. It is noteworthy that the selection of attributes is not objective, but depends on the learning algorithm that is used.
 
 The Jaccard index is a measure of the stability of the attribute selection against statistical fluctuations in the learning algorithm. It is defined as
 \begin{equation*}
@@ -10,7 +10,7 @@ To study the stability of an attribute selection the selection is performed $l$ 
 \begin{equation*}
     \hat{J} = \frac{2}{l \left(l - 1 \right)} \sum\limits_{i = 1}^{l}\sum\limits_{j = i+1}^{l} J\left(F_i, F_j \right) \, .
 \end{equation*}
-Here a value near one corresponds to a stable attribute selection against statistical fluctuations in the learning algorithm.\\
+The attribute selection is stable against statistical fluctuations with a value close to $1$.\\
 
 \subsection{Machine Learnring Algorithms for Classification}
 Multivariate learning algorithms are known to perform better than classification than simple cuts, because they can also consider correlations in the attributes. Since there are multiple concepts and implementations of classifiers on the market a selection of these is evaluated in this analysis to find the optimal classifier.
@@ -39,11 +39,18 @@ gives a measure of probability of an event being signal if $Q > 1$ or background
   \label{fig:knn}
 \end{figure}
 
-The $k$ nearest neighbors (kNN) classifier is a classifier that makes its prediction by calculating the mean value of the $k$ nearest events as depicted in \autoref{fig:knn}. The prediction is highly dependent on $k$. kNN Classifiers with low $k$ are sensitive to statistical fluctuations and those with high $k$ can have worse predictions due to too many different classes in a bunch.
+The $k$ nearest neighbors (kNN) classifier is a classifier that makes its prediction based on the $k$ nearest neighbors of an object. The distance between two objects is measured in the phase space of all considered attributes.
+There are a variety of ways to define the distance, but a simple possibility would be the euclidian distance.
+The training of the classifier solely consists of saving the training data.
+The classifiction principle is depicted in \autoref{fig:knn}.
+An object is classified as the class, which the majority of the $k$ nearest neighbors are in.
+
+The prediction is highly dependent on the choice of$k$. kNN Classifiers with low $k$ are sensitive to statistical fluctuations and those with high $k$ can have worse predictions, because they include objects that are really far away. The latter is especially a problem when the training data is sparse or not distributed uniformly.
 
 \subsubsection*{Random Forest Classifier}
 The random forest classifier is based on the binary decision tree.
-A decision tree consists of nodes at which a cut on one attribute is performed splitting the data. This is done subsequently until a specified depth is reached or if a node only contains one class which is then called a leaf. To prevent overfitting the mean value of a variety of trees is calculated. In a common implementation each tree is trained on a subset of the whole data and the $k$ attributes to be considered for the best cut are chosen randomly. The confidence
+A decision tree consists of nodes at which a cut on one attribute is performed splitting the data. For each node the best split is determined from a random subset of $k$ attributes.
+This is done subsequently until a specified depth is reached or if a node only contains one class which is then called a leaf. To prevent overfitting the mean value of a variety of trees is calculated. In a common implementation each tree is trained on a subset of the whole data. The confidence
 \begin{equation*}
   c  = \frac{1}{N} \sum\limits_{i=1}^{N} P_i \, , P_i \in \{0,1\}
 \end{equation*}
