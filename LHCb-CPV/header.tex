@@ -1,5 +1,4 @@
 \documentclass[
-  draft,
   bibliography=totoc,     % Literatur im Inhaltsverzeichnis
   captions=tableheading,  % Tabellenüberschriften
   titlepage=firstiscover, % Titelseite ist Deckblatt
@@ -35,7 +34,7 @@
 
 % deutsche Spracheinstellungen
 \usepackage{polyglossia}
-\setmainlanguage{english}
+\setmainlanguage{german}
 
 
 \usepackage[
@@ -59,8 +58,7 @@
 \setmathfont{XITS Math}[range={cal, bfcal}, StylisticSet=1]
 
 % Zahlen und Einheiten
-\usepackage[
-  locale=DE,                   % deutsche Einstellungen
+\usepackage[                % deutsche Einstellungen
   separate-uncertainty=true,   % immer Fehler mit \pm
   per-mode=symbol-or-fraction, % / in inline math, fraction in display math
 ]{siunitx}
@@ -115,6 +113,7 @@
 % Literaturverzeichnis
 \usepackage[
   backend=biber,
+  sorting=none, 
 ]{biblatex}
 % Quellendatenbank
 \addbibresource{lit.bib}
@@ -143,13 +142,10 @@
 \usepackage{mleftright}
 
 \author{%
-  Judith Gnade\\%
-  \href{mailto:judith.gnade@tu-dortmund.de}{judith.gnade@tu-dortmund.de}%
+  Noah Behling\\%
+  \href{mailto:noah.behling@tu-dortmund.de}{noah.behling@tu-dortmund.de}%
   \texorpdfstring{\and}{,}%
-  Hendrik Lauersdorf\\%
-  \href{mailto:hendrik.lauersdorf@tu-dortmund.de}{hendrik.lauersdorf@tu-dortmund.de}%
-  \texorpdfstring{\and}{,}%
-  John Wendel\\%
-  \href{mailto:john.wendel@tu-dortmund.de}{john.wendel@tu-dortmund.de}%
+  Felix Wersig\\%
+  \href{mailto:felix.wersig@tu-dortmund.de}{felix.wersig@tu-dortmund.de}%
 }
 \publishers{TU Dortmund – Fakultät Physik}
