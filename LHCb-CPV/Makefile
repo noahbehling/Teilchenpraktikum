@@ -1,15 +1,5 @@
 all: build/main.pdf
 
-# hier Python-Skripte:
-plots/Matrix.pdf: analysis.py matplotlibrc header-matplotlib.tex | build
-	TEXINPUTS=$$(pwd): python analysis.py
-#
-## hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-# build/eh.pdf: plot.py matplotlibrc header-matplotlib.tex | build
-# 	TEXINPUTS=$$(pwd): python plot.py
-#
-build/main.pdf: plots/Matrix.pdf
-
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
 	  BIBINPUTS=build: \
