@@ -2,5 +2,9 @@
 \label{sec:Durchführung}
 In the analysis three data samples are used. The first sample constists of real data from the LHCb experiment. The second and third data samples consist of 
 the simulated decays $B_s^0 \rightarrow \psi(2S) B_s^0$ and $B^0 \rightarrow \psi(2S) K_s^0$. The first dataset is used to create a 
-background dats sample from the upper sideband region of the mass $m(B_s^0)$. The second and third dataset are used as signal samples, 
-where the decay $B^0 \rightarrow \psi(2S) K_s^0$ is iused as control channel.
+background dats sample from the upper sideband region of the mass $m(B_s^0)$ while the second and third dataset are used as signal samples.
+%where the decay $B^0 \rightarrow \psi(2S) K_s^0$ is used as control channel.
+From the signal samples the $B^0$ sample is used as a control channel. 
+In the analysis a feature selection is done and a boosted decision tree is implemented as multivariant classifier  
+to differentiate between signal events and combinatorial background using the k-folded training samples. 
+Using the trained classifier the number of signal events in the data sample and the significance is determined.
