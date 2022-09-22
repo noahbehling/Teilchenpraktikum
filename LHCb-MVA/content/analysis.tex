@@ -1,2 +1,104 @@
 \section{Analysis}\label{sec:analysis}
 
+This analysis is done with three data samples of which the invariant mass distributions are shown in \autoref{fig:dists}. Two of those contain Monte Carlo (MC) simulation of the $B^0_s \to \psi(2S)K^0_\mathrm{S}$ and the kinematically similar $B^0_d \to \to \psi(2S)K^0_\mathrm{S}$ decay, respectively. The third data sample contains data recorded by the LHCb experiment. The simulation of the $B^0_d$ decay will be used as a control channel.
+
+\begin{figure}[tb]
+  \centering
+  \begin{subfigure}{.32\textwidth}
+    \includegraphics[width=\linewidth]{../plots/sim_hist.pdf}
+  \end{subfigure}
+  \begin{subfigure}{.32\textwidth}
+    \includegraphics[width=\linewidth]{../plots/control_sim_hist.pdf}
+  \end{subfigure}
+  \begin{subfigure}{.32\textwidth}
+    \includegraphics[width=\linewidth]{../plots/data_hist.pdf}
+  \end{subfigure}
+  \caption{Invariant mass distributions of the MC simulated decays $B^0_s$ (left) and $B^0_d \to \psi(2S) K^0_\mathrm{S}$ (middle), as well as recorded data from the LHCb experiment (right).}
+  \label{fig:dists}
+\end{figure}
+
+\subsection{Training samples}
+The signal window is defined as the shortest interval that contains $\SI{99}{\percent}$ of the simulated $B^0_s$ decays as shown in \autoref{fig:Bs_sim}.
+It is found to be $\SIrange{5333}{5395}{\mega\eV}$ and will be needed to determine the number of signal events at the very end of this analysis.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics{../plots/sim_hist.pdf}
+  \caption{Invariant mass distribution of the decay products of the MC simulated decay $B^0_s \to \psi(2S)K^0_\mathrm{S}$.}
+  \label{fig:Bs_sim}
+\end{figure}
+
+The $B^0_s$ MC also acts as signal training sample for the upcoming classification. As background training sample the upper sideband (USB) of the recorded data is used, which is all recorded data with a reconstructed invariant mass higher than the highest simulated invariant mass. In this region the data is expected to mainly consist of combinatorial background.
+
+\subsection{Feature selection}
+For the classification over $\num{800}$ features are available, but using all of these would result in a really long computation time and also not all of these features are simulated perfectly. Therefore these need to be reduced significantly.
+
+As a first step features are rejected that are poorly described by the simulation. Using these features would result in a classification between data and simulation instead of signal and background. To locate these features the Kolmogorov-Smirnov test is used which compares two cumulative probability distributions $F^i$ with the distance
+
+\begin{equation*}
+  d = \sup_x \left|F^1(x) - F^2(x)\right|.
+\end{equation*}
+
+In this first step the distributions of each feature of the $B^0_d$ MC are compared to those of the sWeighted data sample as shown in \autoref{fig:sWeights}. These sWeights are obtained from a so called sPlot, which is a statistical method to extract one component from data with various components, in this case possible $B^0_d$ candidates. To the $B^0_d$ MC, kinematic weights are applied to make up partially for features that are not simulated flawlessly. It is expected that the simulations act similarly for $B^0_d$ and $B^0_s$, but the latter cannot be seen in data due to the large background. Therefore the comparison of each feature in data and simulation is done with $B^0_d$.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=12cm]{../plots/sweights.pdf}
+  \caption{Invariant mass distribution of data measured by the LHCb experiment without (blue) and with (orange) sWeights applied to extract $B^0_d$ candidates.}
+  \label{fig:sWeights}
+\end{figure}
+
+In the next step, the $\num{100}$ most similar features in data and simulation are considered. Here, features that are distributed similarly in the $B^0_s$ simulation and the USB of the data are rejected, because they do not help the classification, but only slow down the computation. The distributions are compared with the same metric as before and the $\num{10}$ features with the lowest similarity are taken into account for the classifier.
+
+As a last step it is checked that these features are not highly correlated with the invariant $B^0_s$ mass. To do so, the Pearson correlation coefficient~\cite{pearson} is computed for each of the chosen features with the invariant mass. None of the chosen features are highly correlated.
+
+\subsection{Multivariate classification}
+The XGBoost classifier~\cite{Chen:2016:XST:2939672.2939785} is used as a multivariate classifier to differentiate between signal and background. It is provided the features selected in the last section for training. Since there is much more bakckground ind the training data it is weighted so that the classifier is trained equally on signal and background. To prevent overfitting and bias in training a $k$-fold is applied. The data is split into $k$ parts and $k$ BDTs are trained on $k - 1$ subsets while the remaining subset is used for validation. This method also has the advantage that no data is only used for validating the classifier. In this analysis a $k$-fold is applied with $k = 5$.
+
+The performance of the BDTs is studied using a receiver operating characteristics (ROC) curve. It shows the true positive rate (TPR) of a classifier as a function of its false positive rate (FPR), corresponding to different cut values on the classifier's output. It can be evaluated with the area under the ROC curve (AUC) which equals $1$ for a perfect classifier and $0.5$ for a randomly guessing classifier. The mean ROC curve for the classifier used in this analysis is shown in \autoref{fig:roc}. It can be seen that each BDT ROC curves merely differ from the mean ROC curve, proving that there is no bias or overfitting issues. The AUC score of $\num{0.98}$ confirms the good performance of the classifier.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\textwidth]{../plots/roc.pdf}
+  \caption{Mean ROC curve for the classifier trained for this analysis with one standard deviation and ROC curves for each BDT.}
+  \label{fig:roc}
+\end{figure}
+
+To determine the best possible cut on the classifier the Punzi Figure of Merit (FOM)
+\begin{equation*}
+  \mathrm{FOM} = \frac{\epsilon_\mathrm{sig}}{\frac{5}{2} - \sqrt{N_\mathrm{bkg}}}
+\end{equation*}
+with the signal efficiency $\epsilon_\mathrm{sig}$ and the number of background events in the signal region $N_\mathrm{bkg}$ is used as a metric. The Punzi FOM quantizes the tradeoff between background rejection and conservation of signal and it is not dependent on the absolute number of signal candidates which is perfect in the case of polluted data samples like this one.
+To obtain the signal efficiency, the number of candidates before and after the BDT cut are compared in the signal simulation. For $N_\mathrm{bkg}$ it is assumed that the background efficiency is constant and therefore obtained from the USB. In the signal region it is assumed that the signal contribution is negligible in comparison to the background.
+The Punzi FOM is shown in \autoref{fig:punzi} and the optimal cut value is found to be $\num{0.995}$.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\textwidth]{../plots/punzi.pdf}
+  \caption{Punzi FOM as a function of the cut value on the mean BDT output.}
+  \label{fig:punzi}
+\end{figure}
+
+The invariant mass distribution after applying the BDT cut is shown in \autoref{fig:mass_cut}. It shows a clrarly visible $B^0_d$ peak and a small $B^0_s$ peak polluted with a remaining, but significantly smaller combinatorial background. To evaluate the $B^0_s$ peak fits need to be made on the distribution.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\textwidth]{../plots/signal_window_cut.pdf}
+  \caption{Invariant mass distribution after applying the BDT cut.}
+  \label{fig:mass_cut}
+\end{figure}
+
+\subsection{Invariant mass fit}
+The fit model used in this analysis consists of three components: the $B^0_s$ peak and the $B^0_d$ peaks, each modeled by the sum of two Gaussian distributions, and the combinatorial background, modeled by an exponential function. The parameters for the two peak models are obtained by fits to the corresponding MC simulation. For the $B^0_s$ fit the obtained parameters are
+\begin{align*}
+  \mu_{1, B^0_s} = \SI{5367.16 \pm 0.03}{\mega\eV} && \mu_{2, B^0_s} = \SI{5360.3 \pm 0.88}{\mega\eV}\\
+  \sigma_{1, B^0_s} = \num{5.39 \pm 0.044} && \sigma_{2, B^0_s} = \num{27.1 \pm 2.2}\\
+  \mathrm{frac}_{B^0_s} = \num{0.938 \pm 0.0035}
+\end{align*}
+and for the $B^0_d$ fit the parameters
+\begin{align*}
+  \mu_{1, B^0_d} = \SI{5278.0 \pm 0.34}{\mega\eV} && \mu_{2, B^0_d} = \SI{5279.95 \pm 0.036}{\mega\eV}\\
+  \sigma_{1, B^0_d} = \num{14.8 \pm 0.68} && \sigma_{2, B^0_d} = \num{4.75 \pm 0.056}\\
+  \mathrm{frac}_{B^0_d} = \num{0.12 \pm 0.011}
+\end{align*}
+are obtained.
