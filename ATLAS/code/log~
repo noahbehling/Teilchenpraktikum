@@ -1,0 +1,24 @@
+chiSquare.C
+plotDistribution.C
+36,41d35
+<   //if you want to run this script for several input files, it is useful to call the name of the file when executing this program
+<   if(argn==1){
+<     cout << "Please start plotDistribution.exe with added argument of file to be processed" << endl;
+<     return 1;
+<   }
+< 
+43c37
+<   string path = string(argv[1]);
+---
+>   string path = "../samples/samples/singletop.el_selected.root";
+77c71
+<     if ((iEntry+1)%10000 == 0) {
+---
+>     if ((iEntry+1)%100 == 0) {
+107a102
+> 
+runSelection.C
+16c16
+<   string inpath = "/afs/e4.physik.uni-dortmund.de/group/atlas/data/ttbar/FPraktikum_TopResonanzen/Final/samples/"+string(argv[1]);
+---
+>   string inpath = "../samples/"+string(argv[1]);

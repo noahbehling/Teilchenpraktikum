@@ -1,0 +1,206 @@
+#include "fileHelper.h"
+#include "TTree.h"
+#include "TCanvas.h"
+#include "TStyle.h"
+#include <iostream>
+#include "string.h"
+#include "TH1F.h"
+#include "TLatex.h"
+#include "TLorentzVector.h"
+#include "TLegend.h"
+
+
+using namespace std;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// These functions might be useful. They can be found at the end of this script and don't have to be but can be altered. //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void SetStyle();
+// Should be called before plotting to get a decent looking plot
+
+TH1F * InitHist(TString varName,TString varUnit, int numberBins, float minBin, float maxBin, bool isData); 
+// Helps you initialize a histogram so that it already ha the correct labels when plotted.
+// varName is the variable name in the tuple or the name you pick for a derived physical variable. You should stick to it for the rest of the analysis. (e.g. lep_eta)
+// 
+
+void PlotHist(TString filename, TH1F * hist);
+// Creates a file in with path name (e.g. "text.pdf") and plots histogram in it
+
+ 
+
+
+int main(int argn, char *argv[]) {
+
+  // path to the file to be studied, e.g.
+  string path = "../samples/samples/singletop.el_selected.root";
+  // is the file a data file or not? setting this variable now might be useful
+  bool isdata = false;
+
+  // retrieve the tree from the file
+  mini * tree = fileHelper::GetMiniTree(path);
+  if (tree == 0) {
+    cout << "ERROR tree is null pointer" << endl;
+    return 1;
+  }
+
+  // check that the tree is not empty
+  int nEntries = tree->GetEntries();
+  cout << "INFO tree contains " << nEntries << " events" << endl;
+  if (nEntries == 0) {
+    cout << "ERROR tree contains zero events" << endl;
+    return 1;
+  }
+  
+  //////////////////////////////////////////////////////////////////////////////
+  // To do: initialize histograms to be made
+  // example:
+  TH1F * h_lep_pt = InitHist("lep_pt","p_{T}(l) [MeV]",100,0,200.e3,isdata);
+  //
+  //
+
+  //////////////////////////////////////////////////////////////////////////////////
+
+
+  // now loop over the events in the tree
+  for (int iEntry = 0; iEntry < nEntries; ++iEntry) {
+
+    // get entry no. iEntry and tell every 100th event
+    tree->GetEntry(iEntry);
+    if ((iEntry+1)%100 == 0) {
+      cout << "INFO processing the " << iEntry+1 << "th event" << endl;
+    }
+
+    // For Monte Carlo, each event has to have a scale factor. 
+    // The scale factors necessary can be found separately in the samples, but they have also been combined in the variable scaleFactor_COMBINED.
+    float w = tree->scaleFactor_COMBINED;
+    
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // Get variable or calculate it (s. instructions)
+    float lep_pt = tree->lep_pt[0];
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////  
+    // fill histograms
+    h_lep_pt->Fill(lep_pt,w);
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        
+  }
+
+  SetStyle();
+
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  //To do: Use PlotHist to plot
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  //You can now use fileHelper::SaveNewHist to save histograms
+
+
+
+  // To end the program properly, delete all dynamic instances
+  delete h_lep_pt;
+  delete tree;
+
+  return 0;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+////// Functions that can but do not have to be uses: ////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+TH1F * InitHist(TString varName,TString varUnit, int numberBins, float minBin, float maxBin, bool isData){
+  TH1F *hist = new TH1F(varName,varName,numberBins,minBin,maxBin);
+  hist->SetTitle(";"+varUnit+";Events");
+  hist->GetYaxis()->SetTitleOffset(1.3);
+  hist->Sumw2(false);
+  if(isData){
+    hist->Sumw2(true);
+  }
+  return hist;
+}
+
+
+void PlotHist(TString filename, TH1F * hist){
+	TCanvas * canv = new TCanvas("canv","Canvas for histogram",1);
+  hist->Draw("hist");
+  canv->Print(filename);
+  cout << "INFO: " << filename << " has been created" << endl;
+  delete canv;
+}
+
+void Plot2Hist(TString filename, TString varUnit, TH1F * hist1, TH1F * hist2) {
+  TCanvas * canv = new TCanvas("canv","Canvas for histograms",1);
+  canv->SetLeftMargin(.12);
+  canv->SetRightMargin(.1);
+  
+  hist1->Draw("HIST");
+
+  hist1->SetTitle(";"+varUnit+";Events");
+  hist1->GetYaxis()->SetTitleOffset(1);
+
+  hist2->Draw("HIST SAME");
+
+  TLegend * l = new TLegend(0.5, 0.75, 0.86, 0.9, "");
+  l->SetFillColor(0);
+  l->SetBorderSize(1);
+  l->SetTextSize(0.04);
+  l->SetTextAlign(12);
+  l->AddEntry(hist1, "Add description", "l");
+  l->AddEntry(hist2, "Add description here", "l");
+  l->Draw();
+
+  ///////////////////////////////////////////
+  // Histograms can be normalized to unit area by calling 
+  // hist->Scale(1./hist->Integral()) before plotting
+  // In case you decide to do that, you can use the following lines to label your plots
+  ////////////////////////////////////////////////////////////////////////////////////////
+  //TLatex * t = new TLatex(0.93,0.55,"#bf{Normalized to unit area}");
+  //t->SetTextAngle(90);
+  //t->SetNDC();
+  //t->SetTextSize(.04);
+  //t->DrawClone();
+
+  canv->Print(filename);
+  cout << "INFO: " << filename << " has been created" << endl;
+  delete canv;
+}
+
+void SetStyle() {
+  gStyle->SetFrameBorderMode(0);
+  gStyle->SetFrameFillColor(0);
+  gStyle->SetCanvasBorderMode(0);
+  gStyle->SetCanvasColor(0);
+  gStyle->SetPadBorderMode(0);
+  gStyle->SetPadColor(0);
+  gStyle->SetStatColor(0);
+  gStyle->SetPadTopMargin(0.05);
+  gStyle->SetPadRightMargin(0.05);
+  gStyle->SetPadBottomMargin(0.15);
+  gStyle->SetPadLeftMargin(0.15);
+  gStyle->SetTitleXOffset(1.3);
+  gStyle->SetTitleYOffset(1.3);
+  gStyle->SetTextSize(0.05);
+  gStyle->SetLabelSize(0.05,"x");
+  gStyle->SetTitleSize(0.05,"x");
+  gStyle->SetLabelSize(0.05,"y");
+  gStyle->SetTitleSize(0.05,"y");
+  gStyle->SetLabelSize(0.05,"z");
+  gStyle->SetTitleSize(0.05,"z");
+  gStyle->SetMarkerStyle(20);
+  gStyle->SetMarkerSize(1.2);
+  gStyle->SetHistLineWidth(2);
+  gStyle->SetOptTitle(0);
+  gStyle->SetOptStat(0);
+  gStyle->SetOptFit(0);
+}
+
+

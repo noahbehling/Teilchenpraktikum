@@ -1,0 +1,232 @@
+
+ttbar:
+  Events:   7847944
+  xsec[pb]: 252.82
+  w: 3.22148068e-02 
+
+singletop:
+  Events:   1468942
+  xsec[pb]: 52.47
+  w: 3.57195859e-02
+
+diboson:
+  Events:   922521
+  xsec[pb]: 29.41
+  w: 3.18800331e-02
+
+z+jets:
+  Events:   37422926
+  xsec[pb]: 2516.2
+  w: 6.72368590e-02
+
+w+jets:
+  Events:   66536222
+  xsec[pb]: 36214
+  w: 5.44274966e-01
+
+ZPrime400:
+  Events:   100000
+  xsec[pb]: 1.1e2
+  w: 1.10000000e+00
+
+ZPrime500:
+  Events:   100000
+  xsec[pb]: 8.2e1
+  w: 8.20000000e-01
+
+ZPrime750:
+  Events:   100000
+  xsec[pb]: 2.0e1
+  w: 2.00000000e-01
+
+ZPrime1000:
+  Events:   100000
+  xsec[pb]: 5.5
+  w: 5.50000000e-02
+
+ZPrime1250:
+  Events:   100000
+  xsec[pb]: 1.9
+  w: 1.90000000e-02
+
+ZPrime1500:
+  Events:   100000
+  xsec[pb]: 8.3e-1
+  w: 8.30000000e-03
+
+ZPrime1750:
+  Events:   100000
+  xsec[pb]: 3.0e-1
+  w: 3.00000000e-03
+
+ZPrime2000:
+  Events:   100000
+  xsec[pb]: 1.4e-1
+  w: 1.40000000e-03
+
+ZPrime2250:
+  Events:   100000
+  xsec[pb]: 6.7e-2
+  w: 6.70000000e-04
+
+ZPrime2500:
+  Events:   100000
+  xsec[pb]: 3.5e-2
+  w: 3.50000000e-04
+
+ZPrime3000:
+  Events:   100000
+  xsec[pb]: 1.2e-2
+  1.20000000e-04
+
+data:
+  Lumi[ipb]:100
+  
+  path:
+  
+  /net/e4-nfs-home.e4.physik.tu-dortmund.de/home/zprime/E4/Final/samples/data.mu.root
+  
+  
+  data files:
+  
+  data.el.0.root  data.mu.3.root     ttbar.mu.root       zprime2000.mu.root
+  data.el.1.root  data.mu.4.root     wjets.el.root       zprime2250.el.root
+  data.el.2.root  data.mu.5.root     wjets.mu.root       zprime2250.mu.root
+  data.el.3.root  data.mu.6.root     zjets.el.root       zprime2500.el.root
+  data.el.4.root  data.mu.7.root     zjets.mu.root       zprime2500.mu.root
+  data.el.5.root  data.mu.8.root     zprime1000.el.root  zprime3000.el.root
+  data.el.6.root  data.mu.9.root     zprime1000.mu.root  zprime3000.mu.root
+  data.el.7.root  data.mu.root       zprime1250.el.root  zprime400.el.root
+  data.el.8.root  diboson.el.root    zprime1250.mu.root  zprime400.mu.root
+  data.el.9.root  diboson.mu.root    zprime1500.el.root  zprime500.el.root
+  data.el.root    l_pt               zprime1500.mu.root  zprime500.mu.root
+  data.mu.0.root  singletop.el.root  zprime1750.el.root  zprime750.el.root
+  
+  
+  sshfs Zprime:/net/e4-nfs-home.e4.physik.tu-dortmund.de/home/zprime/wersig_felix_2022_09_08 ~/Desktop/mount_ATLAS
+  
+  fusermount -zu ~/Desktop/mount_ATLAS
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  #include "mini.h"
+#include "fileHelper.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(int argn, char *argv[]) {
+
+  //if you want to run this script for several input files, it is useful to call the name of the file when executing this program
+  if(argn==1){
+    cout << "Please start runSelection.exe with added argument of file to be processed" << endl;
+    return 1;
+  }
+  // path to the file to be studied + filename from argument called when executing file
+  string inpath = string(argv[1]);
+  TString filename = TString(inpath).ReplaceAll("/net/e4-nfs-home.e4.physik.tu-dortmund.de/home/zprime/E4/Final/samples/", "");
+
+  cout << "Processing " << filename << endl;
+
+  // retrieve the tree from the file
+  mini * tree = fileHelper::GetMiniTree(inpath); // pointer to tree
+  if (tree == 0) {
+    cout << "ERROR tree is null pointer" << endl;
+    return 1;
+  }
+
+  // check that the tree is not empty
+  int nEntries = tree->GetEntries();
+  cout << "INFO tree contains " << nEntries << " events" << endl;
+  if (nEntries == 0) {
+    cout << "ERROR tree contains zero events" << endl;
+    return 1;
+  }
+
+  // create file to which the selection is going to be saved to
+  TString outpath = "output_runSelection/" + filename;
+  outpath.ReplaceAll(".root", "_selected.root");
+  TFile * newFile = new TFile(outpath, "RECREATE"); // path to file where selection is saved
+  
+  // make a copy of the tree to be saved after selection
+  TTree * newTree = tree->CloneTree();
+    
+   
+  // now loop over the events in the tree
+  for (int iEntry = 0; iEntry < nEntries; ++iEntry) {
+
+    // get entry no. iEntry and tell every 100000th event
+    tree->GetEntry(iEntry);
+    if ((iEntry+1)%100000 == 0) {
+      cout << "INFO processing the " << iEntry+1 << "th event" << endl;
+    }
+
+    //////////////////////////////////////////////////////
+    // To do: Implement all required selection criteria //
+    //////////////////////////////////////////////////////
+
+
+    bool passCriteria = true;
+
+
+
+
+    // check all selection criteria and only save the event to the new
+    // tree if all of them are true
+    if (passCriteria) {
+      newTree->Fill();
+    }
+    
+  }
+
+  // save new tree to file
+  cout << "INFO saving new tree with " << newTree->GetEntries() << " entries" << endl;
+  newFile->Write();
+  gDirectory->Purge();
+  newFile->Close();
+  
+  // end program happily
+  delete newFile;
+  return 0;
+}
+
+  data.mu.1.root  singletop.mu.root  zprime1750.mu.root  zprime750.mu.root
+  data.mu.2.root  ttbar.el.root      zprime2000.el.root
+  
+  
+  
+  
+  
+  mini Funktionen
+  
+  
+     mini(TTree *tree=0);
+   virtual ~mini();
+   virtual Int_t    Cut(Long64_t entry);
+   virtual Int_t    GetEntry(Long64_t entry); // bei 1 gibt 240 zurück
+   virtual Int_t    GetEntries() { return fChain->GetEntries(); }
+   virtual Int_t    GetEntries(const char* sel) { return fChain->GetEntries(sel); }
+   virtual TTree *  CloneTree() { return fChain->CloneTree(0); }
+   virtual TTree *  CloneTree(int a) { return fChain->CloneTree(a); }
+   virtual void     CopyAddresses(TTree *tree){ fChain->CopyAddresses(tree, true);}
+   virtual Long64_t LoadTree(Long64_t entry);
+   virtual void     Init(TTree *tree);
+   virtual void     Loop();
+   virtual Bool_t   Notify();
+   
+   virtual void     Show(Long64_t entry = -1); // zeigt alles was ich will aber kein return value :(
+   
+   virtual Double_t GetMinimum(TString varName);
+   virtual Double_t GetMaximum(TString varName);
+
+// METHOD1:
+//    fChain->SetBranchStatus("*",0);  // disable all branches
+//    fChain->SetBranchStatus("branchname",1);  // activate branchname
+// METHOD2: replace line
+//    fChain->GetEntry(jentry);       //read all branches
+//by  b_branchname->GetEntry(ientry); //read only this branch
+
+
+
+  

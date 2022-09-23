@@ -1,0 +1,453 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri May 20 20:41:57 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 12)
+OBJ = $(patsubst %.cxx, %.o, $(SRC))
+# environment
+XDG_SESSION_CLASS = user
+# makefile (from 'Makefile', line 11)
+SRC = $(wildcard *.cxx)
+# environment
+SNAP_COMMON = /var/snap/code/common
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+ 
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /mnt/atlas
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 5)
+RM = rm -f
+# environment
+SNAP_DATA = /var/snap/code/97
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 8:50880
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+SNAP_ARCH = amd64
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+USERNAME = masten
+# makefile (from 'Makefile', line 8)
+CXXFLAGS = $(ROOTCFLAGS) -Wall -Wno-deprecated -ggdb -fPIC
+# environment
+MAKELEVEL := 0
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+_ = /snap/code/97/usr/share/code/code
+# environment
+MANAGERPID = 1865
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+LC_NAME = de_DE.UTF-8
+# environment
+VSCODE_CWD = /home/masten
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/masten/.local/bin:/home/masten/miniconda3/condabin:/home/masten/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# makefile (from 'Makefile', line 17)
+GARBAGE = $(OBJ) $(EXE)
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+SESSION_MANAGER = local/masten-Latitude-7490:@/tmp/.ICE-unix/2080,unix/masten-Latitude-7490:/tmp/.ICE-unix/2080
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/masten/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+SNAP = /snap/code/97
+# environment
+SNAP_VERSION = c3511e6c
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+DISABLE_WAYLAND = 1
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+INVOCATION_ID = a6b6d74f14314f1295ba4355bb759717
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 22433
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+CONDA_EXE = /home/masten/miniconda3/bin/conda
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+PWD = /mnt/atlas
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 2040
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/masten
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /home/masten/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+# environment
+LOGNAME = masten
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# environment
+SNAP_CONTEXT = 7Obm2c4137Dm4FJSAM9U-yevXGVdCFLV53fxeaDsO_Q4tfPiuQQu
+# automatic
++F = $(notdir $+)
+# makefile (from 'Makefile', line 2)
+ROOTLIBS = $(shell root-config --libs)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+SNAP_USER_COMMON = /home/masten/snap/code/common
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+LC_TIME = de_DE.UTF-8
+# environment
+SNAP_REAL_HOME = /home/masten
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SNAP_USER_DATA = /home/masten/snap/code/97
+# environment
+SHLVL = 0
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7d17e0d8-8efa-4be3-adbe-415737d36e69.sock
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = masten
+# environment
+SNAP_REVISION = 97
+# environment
+LC_MONETARY = de_DE.UTF-8
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# makefile (from 'Makefile', line 14)
+RUN = $(wildcard *.C)
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LC_TELEPHONE = de_DE.UTF-8
+# environment
+CONDA_SHLVL = 0
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-25fdc580-1.67.2-main.sock
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+LC_PAPER = de_DE.UTF-8
+# environment
+LC_IDENTIFICATION = de_DE.UTF-8
+# environment
+QT_ACCESSIBILITY = 1
+# default
+MAKEFILES := 
+# environment
+SNAP_COOKIE = 7Obm2c4137Dm4FJSAM9U-yevXGVdCFLV53fxeaDsO_Q4tfPiuQQu
+# environment
+LC_NUMERIC = de_DE.UTF-8
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 4)
+CXX = g++
+# environment
+LC_MEASUREMENT = de_DE.UTF-8
+# environment
+SNAP_NAME = code
+# environment
+LC_ALL = C
+# environment
+CONDA_PYTHON_EXE = /home/masten/miniconda3/bin/python
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# makefile (from 'Makefile', line 9)
+LIBS = $(ROOTLIBS) -lTreePlayer -lMinuit
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SNAP_REEXEC = 
+# environment
+_CE_M = 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# default
+.RECIPEPREFIX := 
+# makefile (from 'Makefile', line 15)
+EXE = $(patsubst %.C, %.exe, $(RUN))
+# environment
+LC_ADDRESS = de_DE.UTF-8
+# environment
+LANG = C
+# environment
+VSCODE_PID = 22482
+# makefile (from 'Makefile', line 1)
+ROOTCFLAGS = $(shell root-config --cflags)
+# environment
+_CE_CONDA = 
+# variable set hash-table stats:
+# Load=145/1024=14%, Rehash=0, Collisions=30/189=16%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 76, inode 1): 19 files, no impossibilities.
+
+ 
+# 19 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+%.exe: %.C fileHelper.o mini.o
+#  recipe to execute (from 'Makefile', line 22):
+	@echo "creating " $@
+	@$(CXX) $+ -o $@ $(CXXFLAGS) $(LIBS)
+
+%.o: %.cxx %.h
+#  recipe to execute (from 'Makefile', line 26):
+	@echo "creating " $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# 2 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+fileHelper.cxx:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-30 16:17:33
+#  File has been updated.
+#  Successfully updated.
+
+all: fileHelper.o mini.o stackedPlots.exe chiSquare.exe plotDistribution.exe runSelection.exe
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+
+# Not a target:
+runSelection.exe:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-30 16:17:33
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+plotDistribution.exe:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+fileHelper.h:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-30 16:17:33
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mini.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 30):
+	@$(RM) $(GARBAGE)
+
+# Not a target:
+chiSquare.exe:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+stackedPlots.exe:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# 'override' directive
+fileHelper.o: .SHELLSTATUS := 1
+fileHelper.o: fileHelper.cxx fileHelper.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'fileHelper'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := fileHelper.o
+# automatic
+# % := 
+# automatic
+# * := fileHelper
+# automatic
+# + := fileHelper.cxx fileHelper.h
+# automatic
+# | := 
+# automatic
+# < := fileHelper.cxx
+# automatic
+# ^ := fileHelper.cxx fileHelper.h
+# automatic
+# ? := fileHelper.cxx fileHelper.h
+# variable set hash-table stats:
+# Load=9/32=28%, Rehash=0, Collisions=3/21=14%
+#  recipe to execute (from 'Makefile', line 26):
+	@echo "creating " $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# files hash-table stats:
+# Load=13/1024=1%, Rehash=0, Collisions=0/35=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 37 / storage = 406 B / avg = 10 B
+# current buf: size = 8162 B / used = 406 B / count = 37 / avg = 10 B
+
+# strcache performance: lookups = 50 / hit rate = 26%
+# hash-table stats:
+# Load=37/8192=0%, Rehash=0, Collisions=1/50=2%
+# Finished Make data base on Fri May 20 20:41:58 2022
+
+ 

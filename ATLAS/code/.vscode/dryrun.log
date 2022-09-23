@@ -1,0 +1,22 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/mnt/atlas'
+ 
+echo "creating " fileHelper.o
+g++  -Wall -Wno-deprecated -ggdb -fPIC -c fileHelper.cxx -o fileHelper.o
+ 
+echo "creating " mini.o
+g++  -Wall -Wno-deprecated -ggdb -fPIC -c mini.cxx -o mini.o
+ 
+echo "creating " stackedPlots.exe
+g++ stackedPlots.C fileHelper.o mini.o -o stackedPlots.exe  -Wall -Wno-deprecated -ggdb -fPIC  -lTreePlayer -lMinuit
+ 
+echo "creating " chiSquare.exe
+g++ chiSquare.C fileHelper.o mini.o -o chiSquare.exe  -Wall -Wno-deprecated -ggdb -fPIC  -lTreePlayer -lMinuit
+ 
+echo "creating " plotDistribution.exe
+g++ plotDistribution.C fileHelper.o mini.o -o plotDistribution.exe  -Wall -Wno-deprecated -ggdb -fPIC  -lTreePlayer -lMinuit
+ 
+echo "creating " runSelection.exe
+g++ runSelection.C fileHelper.o mini.o -o runSelection.exe  -Wall -Wno-deprecated -ggdb -fPIC  -lTreePlayer -lMinuit
+make: Leaving directory '/mnt/atlas'
+ 
