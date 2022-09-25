@@ -1,11 +1,12 @@
 \section{Analysis}\label{sec:analysis}
 
 \subsection{The data samples}
-The datasamples used for the analysis have been preselected with either an electron or muontrigger. In the preselection a lepton and jet transverse momentum 
-$\texttt{lep\_pt}, \, \texttt{jet\_pt} > 25 \, \si{\giga\eV}$ and a pseudorapidity for jets and lepton of $|\eta| <2.5$. 
-The samples are saved in \texttt{ntuples}. Sometimes an entry for a variable contains more entries than the \texttt{ntuple} itself since if a multiple 
+The datasamples used for the analysis have been preselected with either an electron or muontrigger. In the preselection acut on the lepton and jet transverse momentum 
+$\texttt{lep\_pt}, \, \texttt{jet\_pt} > 25 \, \si{\giga\eV}$ and a pseudorapidity for jets and lepton of $|\eta| <2.5$ has been applied. 
+The samples are saved in \texttt{ntuples}. Sometimes an entry for a variable contains more entries than the \texttt{ntuple} itself since for some variables if a multiple 
 electrons or jets are measured for every lepton or jet a new entry is created. An example for such a variable is the lepton transverse momentum 
 shown in Figure \ref{fig:unselected_pt} with 467238 entries while the data sample has 450199 entries.  
+The lepton transverse momentum rises sharply at low momenta and has a peak arround $50  \si{\giga\eV}$. After that it falls exponentially.
 Furthermore the figure contains the mean value and the standard deviation of the variable. The unit of the transverse momentum in the data is $\si{\mega\eV}$.
 
 \begin{figure}[tb]
@@ -16,15 +17,17 @@ Furthermore the figure contains the mean value and the standard deviation of the
   \end{figure}
 
 \subsection{The event selection}
-This analysis focuses on the $\texttt{lepton+jets}$ final state where the final state consists of one charged lepton, a neutrino, two bottom quarks and two other quarks from a 
-decay of a W boson. Therefore in the selection requirements are introduced to select for the final state. 
+To increase the signal to background ratio of the data samples a selection is applied which specifically targets the final state of the \texttt{lepton+jets} 
+channel. The final state consists of one charged lepton, a neutrino, two bottom quarks and two other quarks from the 
+decay of a W boson. The selection consists of 7 cuts which are applied to tha data samples after each other. 
+The efficiency of the selection $(A \cdot \epsilon) = \# \text{events(after cut)} / \# \text{events(before cut)}$ of every cut together with all 
+cuts that have been applied beforehand is listed in table \ref{tab:eff_a} and \ref{tab:eff_b} for all monte carlo samples.\\
 For the jets the number of good jets in one event has to be $\geq 4$ (Cut 1) while exactly one lepton is required (Cut 2) 
 in the events. Since the final state contains a neutrino which is not seen in the detector a missing 
 transverse energy $met\_et > 40 \, \si{\giga\eV}$ (Cut 3) is required. To supress combinatorial background 
 the lepton is required to have a transverse momentum $lep\_pt > 50 \, \si{\giga\eV}$ (Cut 4) and one of 
 the jets has to pass $jet\_pt > 80 \, \si{\giga\eV}$ (Cut 5). The number of b-tagged jets in one event has to be 
 $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, \si{\giga\eV}$ (Cut 7).
-The efficiency of the selection calculated after subsequent application of the cuts is shown in figure 
 % original table table with the efficiencies
 %\begin{table}[]
 %    \begin{tabular}{l|lllllll}
@@ -174,3 +177,151 @@ The efficiency of the selection calculated after subsequent application of the c
 \label{tab:eff_b}
 
   \end{table}
+
+
+\subsection{Fundamental distributions}
+The main background after the selection is $t \overline{t}$-production due to its similar finlal state which leads to a large selection efficiency 
+in table \ref{tab:eff_b} compared to the other simulated Standard Model processes. 
+Therefore the $t \overline{t}$-sample is investigated by creating 
+histograms of several of the variables for the electron- and muon-samples 
+and investigating those for deviations from the expectation of a $t \overline{t}$-sample. 
+The chosen distributions are 
+\begin{itemize}
+  \item the lepton $p_T$, $\eta$, $\phi$ and E,
+  \item $p_T$, $\eta$, $\phi$ and E  of all good jets,
+  \item the number of good jets in each event, 
+  \item $p_T$, $\eta$, $\phi$ and E of the jets with the largest $p_T$ for each event,
+  \item the number of b-tagged jets, 
+  \item the magnitude of the missing transverse momentum, 
+\end{itemize}
+where $p_T$ refers to the transverse momentum, $\eta$ to the pseudorapidity, $\phi$ to the polar angle and E to the energy. 
+
+% only distributions with very specific signatures 
+% 4 lep pt and met_et
+% 4 number good, b-tagged
+% only e one eta, phi ->largest pt jet
+
+\begin{figure}%
+  \begin{subfigure}{0.5\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_lep_pt.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.5\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_lep_pt.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+
+  \begin{subfigure}{0.5\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_met_et.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.5\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_met_et.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \caption{}%
+  \label{fig:}%
+\end{figure}
+
+
+\begin{figure}%
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_good.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_good.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_btag.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_btag.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \caption{}%
+  \label{fig:}%
+\end{figure}
+
+\begin{figure}%
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_pt_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_pt_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_eta_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_eta_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_phi_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_phi_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_jet_E_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}{0.48\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_jet_E_max.pdf}%
+    \caption{}%
+    \label{fig:}%
+  \end{subfigure}%
+  \caption{}%
+  \label{fig:}%
+\end{figure}

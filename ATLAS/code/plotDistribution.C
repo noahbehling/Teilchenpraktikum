@@ -65,10 +65,10 @@ int main(int argn, char *argv[]) {
   //////////////////////////////////////////////////////////////////////////////
   // To do: initialize histograms to be made
   // example:
-  TH1F * h_lep_pt = InitHist("lep_pt","p_{T}(l) [MeV]",50,25.e3,200.e3,isdata);
-  TH1F * h_lep_eta = InitHist("lep_eta", "eta", 50, -2.5, 2.5, isdata);
+  TH1F * h_lep_pt = InitHist("lep_pt","p_{T}(l) [MeV]",25,50.e3,200.e3,isdata);
+  TH1F * h_lep_eta = InitHist("lep_eta", "eta", 25, -2.5, 2.5, isdata);
   TH1F * h_lep_phi = InitHist("lep_phi", "phi", 25, -3.12, 3.12, isdata);
-  TH1F * h_lep_E = InitHist("lep_E", "E(l) [MeV]", 50, 30.e3, 300.e3, isdata);
+  TH1F * h_lep_E = InitHist("lep_E", "E(l) [MeV]", 25, 30.e3, 300.e3, isdata);
 
   TH1F * h_jet_pt = InitHist("jet_pt","p_{T}(l) [MeV]",50,25.e3,200.e3,isdata);
   TH1F * h_jet_eta = InitHist("jet_eta", "eta", 50, -2.5, 2.5, isdata);
@@ -78,9 +78,9 @@ int main(int argn, char *argv[]) {
   TH1F * h_jet_good = InitHist("jet_goot", "number of good jets in event", 9, 4, 12, isdata);
   TH1F * h_jet_btag = InitHist("jet_b_tagged", "number of b-tagged jets in event", 4, 2, 6, isdata);
 
-  TH1F * h_met_et = InitHist("met_et", "p_{T, miss.} [MeV]", 25, 30.e3, 200.e3, isdata);
+  TH1F * h_met_et = InitHist("met_et", "p_{T, miss.} [MeV]", 25, 40.e3, 200.e3, isdata);
 
-  TH1F * h_jet_pt_max = InitHist("jet_pt_max","p_{T}(l) [MeV]",25,40.e3,200.e3,isdata);
+  TH1F * h_jet_pt_max = InitHist("jet_pt_max","p_{T}(l) [MeV]",25,80.e3,200.e3,isdata);
   TH1F * h_jet_eta_max = InitHist("jet_eta_max", "eta", 25, -2.5, 2.5, isdata);
   TH1F * h_jet_phi_max = InitHist("jet_phi_max", "phi", 25, -3.12, 3.12, isdata);
   TH1F * h_jet_E_max = InitHist("jet_E_max", "E(l) [MeV]", 25, 40.e3, 300.e3, isdata);
