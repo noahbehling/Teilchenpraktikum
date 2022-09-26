@@ -131,7 +131,7 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
       zprime3000.mu & 0.626332   & 0.604459   & 0.546971   & 0.430875    & 0.424285    
     \end{tabular}
     %\end{table}
-    \caption{The efficiency of the selection after the application of subsequent cuts (1-5).}
+    \caption{The efficiency of the selection after the application of subsequent cuts (1-5) for all simulated samples.}
     \label{tab:eff_a}
 
   \end{table}
@@ -175,7 +175,7 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
       zprime3000.el & 0.147288    & 0.145005    \\
       zprime3000.mu & 0.160684    & 0.15816     
       \end{tabular}
-\caption{The efficiency of the selection after the application of subsequent cuts (6-7).}
+\caption{The efficiency of the selection after the application of subsequent cuts (6-7) for all simulated samples.}
 \label{tab:eff_b}
 
   \end{table}
@@ -210,34 +210,34 @@ the expected distribution.
 % only e one eta, phi ->largest pt jet
 
 \begin{figure}[H]%
-  \begin{subfigure}{0.5\textwidth}%
+  \begin{subfigure}{0.48\textwidth}%
     \centering%
     \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_lep_pt.pdf}%
     \caption{Transverse momentum of lepton in events where the lepton was tagged as electron.}%
     \label{fig:2a}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.5\textwidth}%
+  \begin{subfigure}{0.48\textwidth}%
     \centering%
     \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_lep_pt.pdf}%
     \caption{Transverse momentum of lepton in events where the lepton was tagged as muon.}%
     \label{fig:2b}%
   \end{subfigure}%
 
-  \begin{subfigure}{0.5\textwidth}%
+  \begin{subfigure}{0.48\textwidth}%
     \centering%
     \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.el_met_et.pdf}%
     \caption{Missing transverse energy of events where the lepton was tagged as electron.}%
     \label{fig:2c}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.5\textwidth}%
+  \begin{subfigure}{0.48\textwidth}%
     \centering%
     \includegraphics[width=\textwidth]{plots/ttbar_distributions/ttbar.mu_met_et.pdf}%
     \caption{Missing transverse energy of events where the lepton was tagged as muon.}%
     \label{fig:2d}%
   \end{subfigure}%
-  \caption{Missing transverse energy of the electron and missing transverse energy of each event.}%
+  \caption{Transverse momentum of the lepton and missing transverse energy of each event.}%
   \label{fig:2}%
 \end{figure}
 
@@ -270,7 +270,7 @@ the expected distribution.
     \caption{Number of b-tagged jets for events where the lepton was tagged as muon.}%
     \label{fig:3d}%
   \end{subfigure}%
-  \caption{Number of good jets and b-tagged jets in events.}%
+  \caption{Number of good jets and b-tagged jets in events from the simulated $t \overline{t}$-sample.}%
   \label{fig:3}%
 \end{figure}
 
@@ -330,7 +330,7 @@ the expected distribution.
     \caption{Energy, lepton is muon.}%
     \label{fig:4h}%
   \end{subfigure}%
-  \caption{Histograms of the parameters for the jet with the maximal transverse momentum for each event.}%
+  \caption{Histograms of the parameters for the jet with the maximal transverse momentum for each event for the simulated $t \overline{t}$-samples.}%
   \label{fig:4}%
 \end{figure}
 
@@ -339,13 +339,21 @@ To further improve signal to backgroud ratio of the samples discriminants constr
 Specifically 
 \begin{itemize}
   \item the missing transverse momentum (dis 1),
-  \item the difference of the azimuthal angle between the missing transverse momentum and the lepton (dis. 2), 
+  \item the difference of the azimuthal angle between the missing transverse momentum and the lepton where the smaller angle of $|\phi_1 - \phi_2|$ and 
+  $|2 \pi - |\phi_1 -\phi_2||$ is chosen(dis. 2), 
   \item the invariant mass of system formed by the three jets with the maximal transverse momentum (dis. 3),
   \item the invariant mass of system formed by the four jets with the maximal transverse momentum, the lepton and the missing transverse momentum (dis. 4), 
   \item the pseudorapidity of system formed by the four jets with the maximal transverse momentum, the lepton and the missing transverse momentum (dis.5) 
 \end{itemize}
 are considered and histograms are created for simulated $t \overline{t}$- and $Z^\prime(1 \, \si{\giga\eV})$-events. Those histograms are shown in figure 
-\ref{fig:5} and figure \ref{fig:6}.
+\ref{fig:5} and figure \ref{fig:6}. The discriminant 2, 3 and 5 have similar distributions for both samples where the main difference are the larger fluctuation 
+for the $Z^\prime$-sample due to the smaller sample size. The distribution for discriminant 1 is fallig for both samples while the decrease is exponential 
+for the $t \overline{t}$-sample no function descibing the decrease of the $Z^\prime$-sample is obvious. In the distribution 4 both samples show a peak 
+at different masses. The peak for the $t \overline{t}$ sample is around $\approx 500 \, \si{\giga\eV}$ which is slightly larger than the invariant mass of 
+two top quarks of $\approx 346 \, \si{\giga\eV}$ while the peak of the $Z^\prime$-sample is located at around $\approx 1100 \, \si{\giga\eV}$ which is close to the mass of the 
+hypothesised particle. Since discriminant 4 should roughly correspond to the invariant mass of the final state of the decay considered we would expect 
+a peakt in the distribution at the mass of a hypothesised $Z^\prime$. Due to this clear signiture of a possibleobservation discriminant 4 is chosen as 
+the final discriminant in this analysis.
 
 
 \begin{figure}[H]%
@@ -404,7 +412,8 @@ are considered and histograms are created for simulated $t \overline{t}$- and $Z
     \caption{dis. 4, $t \overline{t}$}%
     \label{fig:5h}%
   \end{subfigure}%
-  \caption{Histograms of the first four disciminants investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events.}%
+  \caption{Histograms of the first four disciminants investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events where the lepton 
+  is an electron.}%
   \label{fig:5}%
 \end{figure}
 
@@ -422,19 +431,23 @@ are considered and histograms are created for simulated $t \overline{t}$- and $Z
     \caption{dis. 5, $t \overline{t}$}%
     \label{fig:6b}%
   \end{subfigure}%
-  \caption{Histograms of the fifth disciminant investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events.}%
+  \caption{Histograms of the fifth disciminant investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events where the lepton is an electron.}%
   \label{fig:6}%
 \end{figure}
 
 
 \subsection{Agreement of simulation and data}
-To test the agreement of the simulated samples and the data samples the number of expected evente $N = \mathcal{L} \sigma (A \cdot \epsilon)$ is calculated 
-where $\mathcal{L} = 1000 \, \si{\femto\barn\tothe{-1}}$ is the integrated luminosity of the data sample used, \sigma is the cross section of the considered 
-process listed in table \ref{tab:agree} and $(A \cdot \epsilon)$ is the efficiency of the selection listed in table \ref{tab:eff_b}.
+To test the agreement of the simulated samples and the data samples the number of expected evente $N = w \mathcal{L} \sigma (A \cdot \epsilon)$ is calculated 
+where $\mathcal{L} = 1000 \, \si{\pico\barn\tothe{-1}}$ is the integrated luminosity of the data sample used, \sigma is the cross section of the considered 
+process listed in table \ref{tab:agree}, w the weight factor $w = \mathcal{L} \sigma / N_\text{MC}$ where $N_\text{MC}$ is the number of events in the 
+simulated samples listed in table \ref{tab:agree} and $(A \cdot \epsilon)$ is the efficiency of the selection listed in table \ref{tab:eff_b}.
+For the data sample the sample \texttt{data.el.root} is selected for the analysis.
 The considered datasample contains $1112$ events after the selection while the number of expected events of the background processes is $716$. 
-The number of expected events, where the determined values by process are shown in table \ref{tab:agree}, is clearly lower than the number of observed events. 
+The number of expected events, where the determined values by process are shown in table \ref{tab:agree}, is lower than the number of observed events. 
 To further investigate discrepencies between the data samples and simulated samples the distributions of the quantities from section \ref{sec:sekunde} and the 
 chosen final discriminant are created for the data sample and the simulated processes and shown in figure \ref{fig:6} and figure \ref{fig:7}.
+To account for the different sizes of the simulated samples and the data samples the distributions of the simulated samples are multiplied by weights $w$ 
+listed in table \ref{tab:agree}.\\
 All the distributions in figure \ref{fig:6} show very similar shapes for the data sample and simulated samples, but the excess of events in the 
 data sample already observed in the number of total events is also visible. The same is true for the final discriminant. 
 Since the oserved excess in the final discriminant is not concentrated is a peak as it would be expected for the products from the 
@@ -464,7 +477,8 @@ decay of a hypothetical particles this excess is not initially interpreted as a 
       zprime2500 & 100000     & 0.035     &    0.03500000   &     1.93160450e-03       \\
       zprime3000 & 100000     & 0.012     &    0.01200000   &     2.08807200e-04       \\
       \end{tabular}
-\caption{The efficiency of the selection after the application of subsequent cuts (6-7).}
+\caption{Number of simulated events, expected cross section, determined weights and the determined number of expected events for all simulated 
+data samples where the lepton is an electron.}
 \label{tab:agree}
 
   \end{table}
@@ -525,34 +539,40 @@ decay of a hypothetical particles this excess is not initially interpreted as a 
     \caption{Energy of jet with maximal transverse momentum in each event.}%
     \label{fig:6h}%
   \end{subfigure}%
-  \caption{Stacked plots of the fundamental distributions investigated in section \ref{sec:sekunde}.}%
+  \caption{Stacked plots of the fundamental distributions investigated in section \ref{sec:sekunde} with all simulated standard model backgrounds where the lepton 
+  is an electron.}%
   \label{fig:6}%
 \end{figure}
 
 \begin{figure}[tb]
   \centering
   \includegraphics[width=.6\textwidth]{plots/comparism/m_event.pdf}
-  \caption{Stacked plot of the chosen discriminant.}
+  \caption{Stacked plot of the discriminant 4 with all simulated standard model backgrounds where the lepton 
+  is an electron.}
   \label{fig:7}
 \end{figure}
 
 
 \subsection{Statistical analysis}
 To investigate the agreement of the simulated samples and the data samples quantitatively the $\chi^2$ value for between the distribution of the 
-data sample and the sum of the simulated background samples is determined for the chosen final discriminant. Furthermore the p-value $p$ and the 
-confidence level $\text{CL} = 1-p$ is determined. If $p$ would be found to be smaller than $0.05$ the deviation observed between data and simulation of the 
-backgrounds from the standard model would be seen as statistically significant. The values are found to be 
+data sample and the sum of the simulated background samples is determined for the chosen final discriminant. Furthermore the p-value $p$ is 
+determined for 25 degrees of freedom. 
+%If $p$ would be found to be smaller than $0.05$ the deviation observed between data and simulation of the 
+%backgrounds from the standard model would be seen as statistically significant. 
+The values are found to be 
 \begin{align*}
   \chi^2 &= 32.9652 \\
   p &= 0.131945
 \end{align*}
-and therefore the deviation is not statistically significant. 
-To further investigate the possibility of a $Z^\prime$ signal in the data a $95 \%$ exclusion limit for the different mass hypothesis 
+and therefore larger than the limit for claiming evidence for a signal of $2.7 \cdot 10^{-3}$. 
+To further investigate the possibility of a $Z^\prime$ signal in the data the $95 \%$ exclusion limit for the different mass hypothesis 
 is determined by varying the crosssection with a parameter $s$ and replacing the cross section in the weights to be $\sigma^\prime = s \sigma$ 
 until the p-value between the sum of the simulated standard model processes and $Z^\prime$ and the data samples in the final disciminant is 
 $\approx 0.05$. The values found this way for the parameter $s$ and the new cross section for the different mass hypothesis are listed in table \ref{tab:lim}. 
 Furthermore the cross sections $\sigma^\prime$ at the $95 \%$ confidence level and the predicted cross sections are plotted against the mass of $Z^\prime$ 
-in figure \ref{fig:sigm}.
+in figure \ref{fig:sigm}.\\
+Areas of invariant mass where the 95\% confidence level cross section is smaller than the theoretical cross section can be excluded for the mass of 
+a hypothetical $Z^\prime$. Therefore a mass range from $\approx 410 \, \si{\giga\eV}$ to $\approx 1800 \, \si{\giga\eV}$ can be excluded in this analysis. 
 % chi square background only 32.9652
 
 \begin{table}[H]
@@ -572,7 +592,7 @@ in figure \ref{fig:sigm}.
       zprime2500 &   37.4851   &          61.6557                      & 2.15795         \\
       zprime3000 &   32.981    &          1.01                      & 0.01212         \\
       \end{tabular}
-\caption{The efficiency of the selection after the application of subsequent cuts (6-7).}
+\caption{The parameter $s$, the $\chi^2$-value und the modified cross secrion dor all $Z^\prime$ samples at the 95\% confidence limit.}
 \label{tab:lim}
 
   \end{table}
