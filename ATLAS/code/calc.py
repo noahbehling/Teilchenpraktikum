@@ -20,7 +20,7 @@ print(w)
 # N = L sigma (A e)
 print('Anzahl erwartete Events')
 print('e')
-N_e = w * L * sigma * eff_e
+N_e = L * sigma * eff_e
 print(N_e)
 
 # soll 1112
@@ -29,5 +29,8 @@ print(N_e)
 #print('kombiniert')
 #print(N_e * w)
 
-print(np.sum(N_e))
+N_ex = np.array([4.11356659e+02, 1.49062217e+01, 1.09585726e-01, 8.88950051e+00,
+ 2.80307137e+02])
+
+print(np.sum(N_ex))
 #print(np.sum(N_e * w))

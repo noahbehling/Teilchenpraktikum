@@ -80,10 +80,10 @@ int main(int argn, char *argv[]) {
 
   TH1F * h_met_et = InitHist("met_et", "p_{T, miss.} [MeV]", 25, 40.e3, 200.e3, isdata);
 
-  TH1F * h_jet_pt_max = InitHist("jet_pt_max","p_{T}(l) [MeV]",25,80.e3,200.e3,isdata);
+  TH1F * h_jet_pt_max = InitHist("jet_pt_max","p_{T}(jet) [MeV]",25,80.e3,200.e3,isdata);
   TH1F * h_jet_eta_max = InitHist("jet_eta_max", "eta", 25, -2.5, 2.5, isdata);
   TH1F * h_jet_phi_max = InitHist("jet_phi_max", "phi", 25, -3.12, 3.12, isdata);
-  TH1F * h_jet_E_max = InitHist("jet_E_max", "E(l) [MeV]", 25, 40.e3, 300.e3, isdata);
+  TH1F * h_jet_E_max = InitHist("jet_E_max", "E(jet) [MeV]", 25, 40.e3, 300.e3, isdata);
 
   TH1F * h_del_phi = InitHist("del_phi", "Delta phi", 25, 0, 3.12, isdata);
   TH1F * h_dis3 = InitHist("m_jets_pt", "m of three jets with largest p_{T} [MeV]", 25, 0, 150.e3, isdata);

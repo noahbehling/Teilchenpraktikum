@@ -708,6 +708,10 @@ int main(){
   	c_limits->SetLogy();
   	c_limits->Print("limits.pdf");
 	
+	for(int i = 0; i<11; i++){
+	cout << limitXsec[i] << endl;
+	}
+	cout << limitXsec << endl;
 
 	return 0;
 
