@@ -1,33 +1,55 @@
 \section{Analysis}\label{sec:analysis}
 
-\subsection{The data samples}
-The datasamples used for the analysis have been preselected with either an electron or muontrigger. In the preselection acut on the lepton and jet transverse momentum 
-$\texttt{lep\_pt}, \, \texttt{jet\_pt} > 25 \, \si{\giga\eV}$ and a pseudorapidity for jets and lepton of $|\eta| <2.5$ has been applied. 
-The samples are saved in \texttt{ntuples}. Sometimes an entry for a variable contains more entries than the \texttt{ntuple} itself since for some variables if a multiple 
-electrons or jets are measured for every lepton or jet a new entry is created. An example for such a variable is the lepton transverse momentum 
-shown in Figure \ref{fig:unselected_pt} with 467238 entries while the data sample has 450199 entries.  
-The lepton transverse momentum rises sharply at low momenta and has a peak arround $50  \si{\giga\eV}$. After that it falls exponentially.
-Furthermore the figure contains the mean value and the standard deviation of the variable. The unit of the transverse momentum in the data is $\si{\mega\eV}$.
+\subsection{The samples}
+A preselection was done on the samples used in the analysis. Events are reqired to either include a muon or an electron.
+%The datasamples used for the analysis have been preselected with either an electron or muontrigger. 
+In the preselection The jet transverse momentum $\texttt{jet\_pt}$ and the lepton transverse momentum $\texttt{lep\_pt}$
+%, shown in figure \ref{fig:unselected_pt}, 
+are reqired to be above $25 \, \si{\giga\eV}$.
+Furthermore the pseudorapidity $\eta$ of selected events has to fulfill $|\eta| <2.5$.
+%a cut on the lepton and jet transverse momentum 
+%$\texttt{lep\_pt}, \, \texttt{jet\_pt} > 25 \, \si{\giga\eV}$ and a pseudorapidity for jets and lepton of $|\eta| <2.5$ has been applied. 
+%The samples are saved in \texttt{ntuples}. Sometimes an entry for a variable contains more entries than the \texttt{ntuple} itself since for some variables if a multiple 
+%electrons or jets are measured for every lepton or jet a new entry is created. An example for such a variable is the lepton transverse momentum 
+%shown in Figure \ref{fig:unselected_pt} with 467238 entries while the data sample has 450199 entries.  
+The lepton transverse momentum, shown in figure \ref{fig:unselected_pt}, rises sharply at low momenta and has a peak arround $50  \si{\giga\eV}$. After that it falls exponentially.
+%Furthermore the histogram contains the mean value and the standard deviation of the variable. The unit of the transverse momentum in the data is $\si{\mega\eV}$.
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=.9\textwidth]{plots/TBrowser_hist.pdf}
-    \caption{Histogram of the transverse momentum of the leptons in from one of the data samples created with the \texttt{TBrowser} environment from \texttt{Root}.}
+    \caption{Histogram of the transverse momentum of the leptons in one of the data samples created with the \texttt{TBrowser} environment from \texttt{Root}. 
+    In addition the histogram contains the mean value and the standard deviation of the variable \texttt{lep\_pt} while the unit of the transever momentum is $\si{\mega\eV}$.}
     \label{fig:unselected_pt}
   \end{figure}
 
 \subsection{The event selection}
-To increase the signal to background ratio of the data samples a selection is applied which specifically targets the final state of the \texttt{lepton+jets} 
-channel. The final state consists of one charged lepton, a neutrino, two bottom quarks and two other quarks from the 
-decay of a W boson. The selection consists of 7 cuts which are applied to tha data samples after each other. 
-The efficiency of the selection $(A \cdot \epsilon) = \# \text{events(after cut)} / \# \text{events(before cut)}$ of every cut together with all 
+To increase the signal to background ratio, a selection is applied which specifically targets the final state of the 
+%\texttt{lepton+jets} channel. 
+channel of the signal process.
+The final state consists of one charged lepton, a neutrino, two bottom quarks and two other quarks from the 
+decay of a W boson. The selection consists of 7 cuts, which are applied subsequentially. 
+The efficiency of the selection $(A \cdot \epsilon) = \# \text{events(after cut)} / \# \text{events(before the application of cuts)}$ of every cut together with all 
 cuts that have been applied beforehand is listed in table \ref{tab:eff_a} and \ref{tab:eff_b} for all monte carlo samples.\\
-For the jets the number of good jets in one event has to be $\geq 4$ (Cut 1) while exactly one lepton is required (Cut 2) 
-in the events. Since the final state contains a neutrino which is not seen in the detector a missing 
-transverse energy $met\_et > 40 \, \si{\giga\eV}$ (Cut 3) is required. To supress combinatorial background 
-the lepton is required to have a transverse momentum $lep\_pt > 50 \, \si{\giga\eV}$ (Cut 4) and one of 
-the jets has to pass $jet\_pt > 80 \, \si{\giga\eV}$ (Cut 5). The number of b-tagged jets in one event has to be 
-$\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, \si{\giga\eV}$ (Cut 7).
+For the jets the number of good jets in one event is required to be $\geq 4$ 
+%(Cut 1)
+, while exactly one lepton is required 
+%(Cut 2) 
+in the events. Since the final state contains a neutrino 
+%which is not seen in the detector 
+a missing 
+transverse energy $met\_et > 40 \, \si{\giga\eV}$ 
+%(Cut 3)
+ is required. To supress combinatorial background, 
+the lepton is required to have a transverse momentum $lep\_pt > 50 \, \si{\giga\eV}$ 
+%(Cut 4)
+ and one of 
+the jets has to pass $jet\_pt > 80 \, \si{\giga\eV}$ 
+%(Cut 5)
+. The number of b-tagged jets in one event has to be 
+$\geq 2$ 
+%(Cut 6)
+ and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, \si{\giga\eV}$.% (Cut 7).
 % original table table with the efficiencies
 %\begin{table}[]
 %    \begin{tabular}{l|lllllll}
@@ -94,8 +116,9 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
 
   \begin{table}[H]
     \centering
+    \caption{The efficiency of the selection after the application of subsequent cuts (1-5) for all simulated samples.}
     \begin{tabular}{l|lllllll}
-    sample             & Cut 1 & Cut 2 & Cut 3 & Cut 4     & Cut 5   \\
+    sample             & $\#$good jets & $\#$leptons & $p_T$ (missing) &  $p_T$ (lepton)    & $p_T$ (jet)   \\
     \hline
       diboson.el    & 0.0202309  & 0.0194924  & 0.010668   & 0.00565275  & 0.00371891  \\
       diboson.mu    & 0.016195   & 0.0149084  & 0.0093971  & 0.00480721  & 0.00313382  \\
@@ -131,7 +154,6 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
       zprime3000.mu & 0.626332   & 0.604459   & 0.546971   & 0.430875    & 0.424285    
     \end{tabular}
     %\end{table}
-    \caption{The efficiency of the selection after the application of subsequent cuts (1-5) for all simulated samples.}
     \label{tab:eff_a}
 
   \end{table}
@@ -139,8 +161,9 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
 
 \begin{table}[H]
   \centering
+  \caption{The efficiency of the selection after the application of subsequent cuts (6-7) for all simulated samples.}
   \begin{tabular}{l|ll}
-      sample           & Cut 6  & Cut 7 \\
+      sample           & \#b-tagged jets  & $p_T$ (b-tagged jets) \\
       \hline
       diboson.el    & 0.000127506 & 0.00011688  \\
       diboson.mu    & 9.99691e-05 & 9.56227e-05 \\
@@ -175,19 +198,18 @@ $\geq 2$ (Cut 6) and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, 
       zprime3000.el & 0.147288    & 0.145005    \\
       zprime3000.mu & 0.160684    & 0.15816     
       \end{tabular}
-\caption{The efficiency of the selection after the application of subsequent cuts (6-7) for all simulated samples.}
 \label{tab:eff_b}
 
   \end{table}
 
 
 \subsection{Fundamental distributions} \label{sec:sekunde}
-The main background after the selection is $t \overline{t}$-production due to its similar finlal state which leads to a large selection efficiency 
+The main background after the selection is $t \overline{t}$-production since it has the same final state which leads to a large selection efficiency 
 in table \ref{tab:eff_b} compared to the other simulated Standard Model processes. 
-Therefore the $t \overline{t}$-sample is investigated by creating 
-histograms of several of the variables for the electron- and muon-samples 
-and investigating those for deviations from the expectation of a $t \overline{t}$-sample. 
-The chosen distributions are 
+Therefore, the $t \overline{t}$-sample is investigated by creating 
+histograms of several kinematic variables for the electron- and muon-samples. 
+%and investigating those for deviations from the expectation of a $t \overline{t}$-sample. 
+The following distributions were examined:
 \begin{itemize}
   \item the lepton $p_T$, $\eta$, $\phi$ and E,
   \item $p_T$, $\eta$, $\phi$ and E  of all good jets,
@@ -197,12 +219,19 @@ The chosen distributions are
   \item the magnitude of the missing transverse momentum, 
 \end{itemize}
 where $p_T$ refers to the transverse momentum, $\eta$ to the pseudorapidity, $\phi$ to the azimuthal angle and E to the energy. 
-Some of the distributions are shown in figure \ref{fig:2}, figure \ref{fig:3} and figure \ref{fig:4} for the simulated $t\overline{t}$-sample. \\
-Both the missing transverse momentum and the transverse momentum shown in figure \ref{fig:2} fall exponentially and appear very similar. 
+%Some of the distributions 
+The most importat distributions are shown in figure \ref{fig:2}, figure \ref{fig:3} and figure \ref{fig:4} for the simulated $t\overline{t}$-sample. \\
+Both, the missing transverse momentum and the transverse momentum shown in figure \ref{fig:2}, fall exponentially and appear very similar. 
 This agrees with the expectation that the missing transverse momentum should in magnitude be roughly the same since the missing 
 transverse momentum should be dominated by the momentum of the neutrino from the W-decay. \\
-Both the number of good jets in an event and the number of b-tagged jets have a very similar distribution for the electron- and muon data samples, as 
-expected. The same is observed for the kinematic quantities of the jet with the largest transverse momentum of each event. All considered variacles follow 
+Both the number of good jets in an event and the number of b-tagged jets have a very similar distribution for the electron- and muon data samples
+%, as expected. 
+Since quarks can produce more than one jet in data due to final state radiation or wrong reconstruction of the jets the observation that some 
+events contain more than four jets matches with the expectation. 
+Similarly it is possible that one of the quarks from the hadronic decay of the W-boson is a bottom quark and therefore it is expected that some events 
+contain more than two b-tagged jets. 
+%The exxpectation that the number of good jets should 
+The same is observed for the kinematic quantities of the jet with the largest transverse momentum of each event. All considered variacles follow 
 the expected distribution. 
 % only distributions with very specific signatures 
 % 4 lep pt and met_et
@@ -347,12 +376,12 @@ Specifically
 \end{itemize}
 are considered and histograms are created for simulated $t \overline{t}$- and $Z^\prime(1 \, \si{\giga\eV})$-events. Those histograms are shown in figure 
 \ref{fig:5} and figure \ref{fig:6}. The discriminant 2, 3 and 5 have similar distributions for both samples where the main difference are the larger fluctuation 
-for the $Z^\prime$-sample due to the smaller sample size. The distribution for discriminant 1 is fallig for both samples while the decrease is exponential 
-for the $t \overline{t}$-sample no function descibing the decrease of the $Z^\prime$-sample is obvious. In the distribution 4 both samples show a peak 
-at different masses. The peak for the $t \overline{t}$ sample is around $\approx 500 \, \si{\giga\eV}$ which is slightly larger than the invariant mass of 
-two top quarks of $\approx 346 \, \si{\giga\eV}$ while the peak of the $Z^\prime$-sample is located at around $\approx 1100 \, \si{\giga\eV}$ which is close to the mass of the 
-hypothesised particle. Since discriminant 4 should roughly correspond to the invariant mass of the final state of the decay considered we would expect 
-a peakt in the distribution at the mass of a hypothesised $Z^\prime$. Due to this clear signiture of a possibleobservation discriminant 4 is chosen as 
+for the $Z^\prime$-sample due to the smaller number of selected events. The distribution for discriminant 1 is fallig for both samples while the decrease is exponential 
+for the $t \overline{t}$-sample, no function descibing the decrease of the $Z^\prime$-sample is obvious. In the distribution 4, both samples show a peak 
+at different masses. The peak for the $t \overline{t}$ sample is around $\approx 500 \, \si{\giga\eV}$ which is larger than the invariant mass of 
+two top quarks of $\approx 346 \, \si{\giga\eV}$, hinting towards problems of the Monte Carlo model, while the peak of the $Z^\prime$-sample is located at around $\approx 1100 \, \si{\giga\eV}$ which is close to the mass of the 
+hypothesised particle. Since discriminant 4 should roughly correspond to the invariant mass of the final state of the decay considered, a peak would expect 
+ in the distribution at the mass of a hypothesised $Z^\prime$. Due to this clear signiture of a possible signal, discriminant 4 is chosen as 
 the final discriminant in this analysis.
 
 
