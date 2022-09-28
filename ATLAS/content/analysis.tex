@@ -470,44 +470,50 @@ To test the agreement of the simulated samples and the data samples the number o
 where $\mathcal{L} = 1000 \, \si{\pico\barn\tothe{-1}}$ is the integrated luminosity of the data sample used, $\sigma$ is the cross section of the considered
 process listed in Table \ref{tab:agree}, the weight factor $w = \mathcal{L} \sigma / N_\text{MC}$ where $N_\text{MC}$ is the number of events in the
 simulated samples listed in Table \ref{tab:agree} and $(A \cdot \epsilon)$ is the efficiency of the selection listed in Table \ref{tab:eff_b}.
-For the data sample the sample \texttt{data.el.root} is selected for the analysis.
+%For the data sample the sample \texttt{data.el.root} is selected for the analysis.
+For data, events with an electron were used for this part of the analysis.
 The considered data sample contains $1112$ events after the selection while the number of expected events of the background processes is $716$.
-The number of expected events, where the determined values by process are shown in Table \ref{tab:agree}, is lower than the number of observed events.
-To further investigate discrepancies between the data samples and simulated samples the distributions of the quantities from Section \ref{sec:sekunde} and the
+The number of expected events, where the determined values for each process are shown in Table \ref{tab:agree}, is lower than the number of observed events.
+To further investigate discrepancies between the data and simulated events, the distributions of the quantities from Section \ref{sec:sekunde} and the
 chosen final discriminant are created for the data sample and the simulated processes and shown in Figure \ref{fig:6} and Figure \ref{fig:7}.
-To account for the different sizes of the simulated samples and the data samples the distributions of the simulated samples are multiplied by weights $w$
-listed in Table \ref{tab:agree}.\\
+%To account for the different sizes of the simulated samples and the data samples the distributions of the simulated samples are multiplied by weights $w$
+%listed in Table \ref{tab:agree}.
+In these plots, all simulated events are weighted with the weight factorsshown in Table \ref{tab:agree}, to normalize these to their different cross 
+sections.\\
 All the distributions in Figure \ref{fig:6} show very similar shapes for the data sample and simulated samples, but the excess of events in the
 data sample, that was already observed in the number of total events, is also visible. The same is true for the final discriminant.
-Since the observed excess in the final discriminant is not concentrated in a peak as it would be expected for the products from the
-decay of a hypothetical particle this excess is not initially interpreted as a signal from a new particle.
+Since the observed excess in the final discriminant is not concentrated in a peak, as it would be expected for the products from the
+decay of a hypothetical particle, this excess is not initially interpreted as a signal from a new particle but rather shows the imperfections 
+of the simulated events.
 
 % sum expected events 715.5691039359999
 
 \begin{table}[H]
   \centering
+  \caption{Number of simulated events, expected cross section, determined weights and the determined number of expected events for all simulated
+data samples where the lepton is an electron.}
   \begin{tabular}{l|llll}
       sample           &  $N_\text{MC}$  & $\sigma$ / pb & w / $10^{-2}$& $N_\text{expected}$ \\
       \hline
-      ttbar      & 7847944    & 252.82    &    3.22148068   &     4.11356659e+02       \\
-      singletop  & 1468942    & 52.47     &    3.57195859   &     1.49062217e+01       \\
-      diboson.el & 922521     & 29.41     &    3.18800331   &     1.09585726e-01       \\
-      zjets      & 37422926   & 2516.2    &    6.72368590   &     8.88950051e+00       \\
-      wjets      & 66536222   & 36214     &   54.42749660   &     2.80307137e+02       \\
-      zprime400  & 100000     & 110       &  110.00000000   &     2.73528970e+03       \\
-      zprime500  & 100000     & 82        &   82.00000000   &     3.37859483e+03       \\
-      zprime750  & 100000     & 20        &   20.00000000   &     4.85756000e+02       \\
-      zprime1000 & 100000     & 5.5       &    5.50000000   &     5.36619875e+01       \\
-      zprime1250 & 100000     & 1.9       &    1.90000000   &     6.78607800e+00       \\
-      zprime1500 & 100000     & 0.83e     &    0.83000000   &     1.27974886e+00       \\
-      zprime1750 & 100000     & 0.3       &    0.30000000   &     1.70668800e-01       \\
-      zprime2000 & 100000     & 0.14      &    0.14000000   &     3.36669200e-02       \\
-      zprime2250 & 100000     & 0.067     &    0.06700000   &     7.50381240e-03       \\
-      zprime2500 & 100000     & 0.035     &    0.03500000   &     1.93160450e-03       \\
-      zprime3000 & 100000     & 0.012     &    0.01200000   &     2.08807200e-04       \\
+      ttbar      & 7847944    & 252.82    &    3.221   &     411       \\
+      singletop  & 1468942    & 52.47     &    3.572   &     15       \\
+      diboson    & 922521     & 29.41     &    3.188   &         0.1       \\
+      zjets      & 37422926   & 2516.2    &    6.724   &     9       \\
+      wjets      & 66536222   & 36214     &   54.427   &     280       \\
+      zprime400  & 100000     & 110       &  110.000   &     2735       \\
+      zprime500  & 100000     & 82        &   82.000   &     3379       \\
+      zprime750  & 100000     & 20        &   20.000   &     486       \\
+      zprime1000 & 100000     & 5.5       &    5.500   &     54       \\
+      zprime1250 & 100000     & 1.9       &    1.900   &     7       \\
+      zprime1750 & 100000     & 0.3       &    0.300   &     0.2       \\
+      zprime2000 & 100000     & 0.14      &    0.140   &     0.03       \\
+      zprime2250 & 100000     & 0.067     &    0.067   &     0.008       \\
+      zprime2500 & 100000     & 0.035     &    0.035   &     0.002       \\
+      zprime3000 & 100000     & 0.012     &    0.012   &     0.00002       \\
       \end{tabular}
-\caption{Number of simulated events, expected cross section, determined weights and the determined number of expected events for all simulated
-data samples where the lepton is an electron.}
+\caption{Number of simulated events $N_\text{MC}$, the expected cross section $\sigma$, determined weights $w$ and the determined number of 
+expected events for all simulated
+data samples where the lepton is an electron $N_\text{expected}$.}
 \label{tab:agree}
 
   \end{table}

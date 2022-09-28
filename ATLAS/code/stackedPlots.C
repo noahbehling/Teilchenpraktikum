@@ -13,6 +13,7 @@ using namespace std;
 
 void SetStyle();
 void PlotStack(TString path, TString varUnit, THStack * mc, TH1F * data, TLegend * legend);
+void PlotStack1(TString path, TString varUnit, TH1F * mc, TH1F * data, TLegend * legend);
 
 int main() {
   ////////////////////////////////////////////////////////////////////////////////
@@ -148,6 +149,100 @@ int main() {
   delete leg;
   }
 
+  //TString dis[19] = {"lep_pt", "lep_eta", "lep_phi", "lep_E", "jet_pt", "jet_eta", "jet_phi", "jet_E", "jet_goot", "jet_b_tagged", "met_et", "jet_pt_max", 
+  //"jet_eta_max", "jet_phi_max", "jet_E_max","del_phi","m_jets_pt","m_event", "Eta_event"};
+
+  //TString name[19] = {"lep_pt", "lep_eta", "lep_phi", "lep_E", "jet_pt", "jet_eta", "jet_phi", "jet_E", "jet_good", "jet_btag", "met_et", "jet_pt_max", 
+  //"jet_eta_max", "jet_phi_max", "jet_E_max", "del_phi", "dis3", "dis4", "dis5"};
+
+  TFile * file_disc1 = new TFile("plots/MC_root/ttbar.el_met_et_hist.root");
+  TH1F * h_disc1 = (TH1F*)file_disc1->Get("met_et");
+
+  TFile * file_disc2 = new TFile("plots/MC_root/ttbar.el_del_phi_hist.root");
+  TH1F * h_disc2 = (TH1F*)file_disc2->Get("del_phi");
+
+  TFile * file_disc3 = new TFile("plots/MC_root/ttbar.el_dis3_hist.root");
+  TH1F * h_disc3 = (TH1F*)file_disc3->Get("m_jets_pt");
+
+  TFile * file_disc4 = new TFile("plots/MC_root/ttbar.el_dis4_hist.root");
+  TH1F * h_disc4 = (TH1F*)file_disc4->Get("m_event");
+
+  TFile * file_disc5 = new TFile("plots/MC_root/ttbar.el_dis5_hist.root");
+  TH1F * h_disc5 = (TH1F*)file_disc5->Get("Eta_event");
+
+  float scalef;
+  scalef = 7847944 / 100000;
+
+
+  TFile * file_disc1z = new TFile("plots/MC_root/zprime1000.el_met_et_hist.root");
+  TH1F * h_disc1z = (TH1F*)file_disc1->Get("met_et");
+  //h_disc1z->Scale(scalef);
+
+  TFile * file_disc2z = new TFile("plots/MC_root/zprime1000.el_del_phi_hist.root");
+  TH1F * h_disc2z = (TH1F*)file_disc2->Get("del_phi");
+  h_disc2z->Scale(scalef);
+
+  TFile * file_disc3z = new TFile("plots/MC_root/zprime1000.el_dis3_hist.root");
+  TH1F * h_disc3z = (TH1F*)file_disc3->Get("m_jets_pt");
+  h_disc3z->Scale(scalef);
+
+  TFile * file_disc4z = new TFile("plots/MC_root/zprime1000.el_dis4_hist.root");
+  TH1F * h_disc4z = (TH1F*)file_disc4->Get("m_event");
+  h_disc4z->Scale(scalef);
+
+  TFile * file_disc5z = new TFile("plots/MC_root/zprime1000.el_dis5_hist.root");
+  TH1F * h_disc5z = (TH1F*)file_disc5->Get("Eta_event");
+  h_disc5z->Scale(scalef);
+
+
+  h_disc1->SetLineColor(kBlue);
+  h_disc2->SetLineColor(kBlue);
+  h_disc3->SetLineColor(kBlue);
+  h_disc4->SetLineColor(kBlue);
+  h_disc5->SetLineColor(kBlue);
+
+  //h_disc1->SetFillColor(kBlue);
+
+  h_disc1z->SetLineColor(kRed);
+  h_disc2z->SetLineColor(kRed);
+  h_disc3z->SetLineColor(kRed);
+  h_disc4z->SetLineColor(kRed);
+  h_disc5z->SetLineColor(kRed);
+
+
+
+
+
+  TLegend *leg1 = new TLegend(0.7,0.6,0.85,0.9);
+  leg1->AddEntry(h_disc1,"ttbar", "f");
+  leg1->AddEntry(h_disc1z,"Z'(1000 GeV)", "f");
+
+  TLegend *leg2 = new TLegend(0.7,0.6,0.85,0.9);
+  leg2->AddEntry(h_disc2,"ttbar", "f");
+  leg2->AddEntry(h_disc2z,"Z'(1000 GeV)", "f");
+
+  TLegend *leg3 = new TLegend(0.7,0.6,0.85,0.9);
+  leg3->AddEntry(h_disc3,"ttbar", "f");
+  leg3->AddEntry(h_disc3z,"Z'(1000 GeV)", "f");
+
+  TLegend *leg4 = new TLegend(0.7,0.6,0.85,0.9);
+  leg4->AddEntry(h_disc4,"ttbar", "f");
+  leg4->AddEntry(h_disc4z,"Z'(1000 GeV)", "f");
+
+  TLegend *leg5 = new TLegend(0.7,0.6,0.85,0.9);
+  leg5->AddEntry(h_disc5,"ttbar", "f");
+  leg5->AddEntry(h_disc5z,"Z'(1000 GeV)", "f");
+
+  // plotten 
+//   PlotStack("plots/stacked/"+ dis[i] + ".pdf", label[i], hs, h_histogram, leg);
+//  string label[19] = {"p_{T}(l) [MeV]", "Eta(l)", "Phi(l)", "E(l) [MeV]", "p_{T}(jets) [MeV]", "Eta(jets)", "Phi(jets)", "E(jets) [MeV]", "#good jets", 
+//"#b-tagged good jets", "missing E_{T} [MeV]", "p_{T, max}(jets) [MeV]", "Eta (max p_T jet)", "Phi (max p_T jet)", "E (max p_T jet) [MeV]", "Delta Phi (l)",
+// "m of 3 max p_T jets [MeV]", "m of 4 max p_T jets, lepton, neutrino [MeV]", "Eta of 4 max p_T jets, lepton, neutrino"};
+
+  PlotStack1("plots/disc1.pdf", "p_{T, miss} [MeV]", h_disc1z, h_disc1, leg1);
+  PlotStack1("plots/disc2.pdf", "\Delta \phi", h_disc2z, h_disc2, leg2);
+
+
   //delete h_histogram;
   //delete h_histogramttbar;
   //delete h_histogramst;
@@ -206,6 +301,23 @@ void PlotStack(TString filename, TString varUnit, THStack* mc, TH1F * data, TLeg
   delete canv;
 }
 
+
+void PlotStack1(TString filename, TString varUnit, TH1F* mc, TH1F * data, TLegend * legend) {
+  SetStyle();
+	TCanvas * canv = new TCanvas("canv","Canvas for histogram",1);
+  canv->SetLeftMargin(.12);
+  canv->SetRightMargin(.1);
+  //data->Draw("E1");
+  data->SetMinimum(0);
+  mc->Draw();
+  data->Draw("SAME");
+  mc->SetTitle(";"+varUnit+";Events");
+  mc->GetYaxis()->SetTitleOffset(1);
+  //data->Draw("SAME");
+  legend->Draw();
+  canv->Print(filename);
+  delete canv;
+}
 
 
 
