@@ -26,10 +26,10 @@ int main() {
   // wähle die betrachtete Diskriminante
   //TString dis = "m_event";
   //TString name = "dis4";
-
+  // m of event
   TString dis[19] = {"lep_pt", "lep_eta", "lep_phi", "lep_E", "jet_pt", "jet_eta", "jet_phi", "jet_E", "jet_goot", "jet_b_tagged", "met_et", "jet_pt_max", "jet_eta_max", "jet_phi_max", "jet_E_max","del_phi","m_jets_pt","m_event", "Eta_event"};
   TString name[19] = {"lep_pt", "lep_eta", "lep_phi", "lep_E", "jet_pt", "jet_eta", "jet_phi", "jet_E", "jet_good", "jet_btag", "met_et", "jet_pt_max", "jet_eta_max", "jet_phi_max", "jet_E_max", "del_phi", "dis3", "dis4", "dis5"};
-  string label[19] = {"p_{T}(l) [MeV]", "Eta(l)", "Phi(l)", "E(l) [MeV]", "p_{T}(jets) [MeV]", "Eta(jets)", "Phi(jets)", "E(jets) [MeV]", "#good jets", "#b-tagged good jets", "missing E_{T} [MeV]", "p_{T, max}(jets) [MeV]", "Eta (max p_T jet)", "Phi (max p_T jet)", "E (max p_T jet) [MeV]", "Delta Phi (l)", "m of 3 max p_T jets [MeV]", "m of 4 max p_T jets, lepton, neutrino [MeV]", "Eta of 4 max p_T jets, lepton, neutrino"};
+  string label[19] = {"p_{T}(l) [MeV]", "Eta(l)", "Phi(l)", "E(l) [MeV]", "p_{T}(jets) [MeV]", "Eta(jets)", "Phi(jets)", "E(jets) [MeV]", "#good jets", "#b-tagged good jets", "missing E_{T} [MeV]", "p_{T, miss}(jet) [MeV]", "Eta (max p_T jet)", "Phi (max p_T jet)", "E (max p_T jet) [MeV]", "Delta Phi (l)", "m(3j) [MeV]", "m(4j, l, \nu) [MeV]", "\eta(4j, l, \nu)"};
 
   // now you have to get the histograms you want to use. If you have saved them in another file beforehand, you can get them this way:
 
