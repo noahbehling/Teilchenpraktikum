@@ -94,44 +94,50 @@ int main(int argn, char *argv[]) {
 
     if(jet_good < 4){ 
 	passCriteria = false;
-	cut_lep_n--;
+	//cut_lep_n--;
 	cut_jet_n--;
-	cut_btag--; 
-	cut_met--;
-	cut_lep_pt--;
-  cut_btag_pt--;
-  cut_jet_good_pt--;
-    }else if(tree->lep_n != 1){ 
+	//cut_btag--; 
+	//cut_met--;
+	//cut_lep_pt--;
+  //cut_btag_pt--;
+  //cut_jet_good_pt--;
+    }
+  if(tree->lep_n != 1){ 
 	passCriteria = false;
 	cut_lep_n--;
-	cut_btag--;
-	cut_met--;
-	cut_lep_pt--;
-  cut_btag_pt--;
-  cut_jet_good_pt--;
-    } else if (tree->met_et < 40000) {
+	//cut_btag--;
+	//cut_met--;
+	//cut_lep_pt--;
+  //cut_btag_pt--;
+  //cut_jet_good_pt--;
+    }  
+  if (tree->met_et < 40000) {
 	passCriteria = false;
 	cut_met--;
-	cut_btag--; 
-	cut_lep_pt--;
-  cut_btag_pt--;
-  cut_jet_good_pt--;
-    }else if (tree->lep_pt[0] < 50000) { // 40000
+	//cut_btag--; 
+	//cut_lep_pt--;
+  //cut_btag_pt--;
+  //cut_jet_good_pt--;
+    } 
+  if (tree->lep_pt[0] < 50000) { // 40000
 	passCriteria = false;
 	cut_lep_pt--;
-	cut_btag--;
-  cut_btag_pt--;
-  cut_jet_good_pt--;
-    }else if (jet_good_pt == false){
+	//cut_btag--;
+  //cut_btag_pt--;
+  //cut_jet_good_pt--;
+    } 
+  if (jet_good_pt == false){
 	passCriteria = false;
-	cut_btag--;
+	//cut_btag--;
 	cut_jet_good_pt--;
-  cut_btag_pt--;
-    }else if (b_tagged_n<2) {
+  //cut_btag_pt--;
+    } 
+  if (b_tagged_n<2) {
 	passCriteria = false;
 	cut_btag--;
-  cut_btag_pt--;
-    }else if (b_tagged_pt == false){
+  //cut_btag_pt--;
+    } 
+  if (b_tagged_pt == false){
   passCriteria = false;
   cut_btag_pt--;
     }  

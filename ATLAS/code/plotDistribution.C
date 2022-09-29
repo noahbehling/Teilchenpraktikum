@@ -45,7 +45,7 @@ int main(int argn, char *argv[]) {
   // path to the file to be studied, e.g.
   string path = string(argv[1]);
   // is the file a data file or not? setting this variable now might be useful
-  bool isdata = true;
+  bool isdata = false;
 
   // retrieve the tree from the file
   mini * tree = fileHelper::GetMiniTree(path);
@@ -87,8 +87,8 @@ int main(int argn, char *argv[]) {
 
   TH1F * h_del_phi = InitHist("del_phi", "Delta phi", 25, 0, 3.12, isdata);
   TH1F * h_dis3 = InitHist("m_jets_pt", "m(3j) [MeV]", 25, 0, 150.e3, isdata);
-  TH1F * h_dis4 = InitHist("m_event", "m(4j, l, \nu) [MeV]", 25, 150.e3, 3200.e3, isdata);
-  TH1F * h_dis5 = InitHist("Eta_event", "\eta(4j, l, \nu)", 25, -3, 3, isdata);
+  TH1F * h_dis4 = InitHist("m_event", "m(4j, l, nu) [MeV]", 25, 150.e3, 3200.e3, isdata);
+  TH1F * h_dis5 = InitHist("Eta_event", "eta(4j, l, nu)", 25, -3, 3, isdata);
 
   //
   //
