@@ -59,6 +59,7 @@ int main(int argn, char *argv[]) {
   bool b_tagged_pt;
 	int jet_good;
 	bool jet_good_pt;
+  bool lep_pt_n;
    
 
   // now loop over the events in the tree
@@ -81,6 +82,8 @@ int main(int argn, char *argv[]) {
 	jet_good = 0;
 	jet_good_pt = false;
   b_tagged_pt = false;
+  lep_pt_n = false;
+
 	for(UInt_t i = 0; i<tree->jet_n; i++){
 		if (tree->jet_MV1[i] > 0.7892 && tree->jet_good[i] == true){ 
       b_tagged_n++;
@@ -89,6 +92,12 @@ int main(int argn, char *argv[]) {
 		if (tree->jet_good[i] == true) {  jet_good++; }
 		if (tree->jet_pt[i] > 80000 && tree->jet_good[i] == true){ jet_good_pt = true; } // 50000
 	}
+
+  for(UInt_t i = 0; i<tree->lep_n; i++){
+
+      if (tree->lep_pt[i] > 50000){ lep_pt_n = true; }
+	}
+
 
 
 
@@ -119,7 +128,7 @@ int main(int argn, char *argv[]) {
   //cut_btag_pt--;
   //cut_jet_good_pt--;
     } 
-  if (tree->lep_pt[0] < 50000) { // 40000
+  if (lep_pt_n == false) { // 40000
 	passCriteria = false;
 	cut_lep_pt--;
 	//cut_btag--;
