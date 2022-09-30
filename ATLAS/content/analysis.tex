@@ -6,7 +6,7 @@ A preselection was done to the data used in the analysis. Events are required to
 In the preselection, a cut on both, the jet transverse momentum, $\texttt{jet\_pt}$, and the lepton transverse momentum, $\texttt{lep\_pt}$,
 %, shown in figure \ref{fig:unselected_pt},
 of more than $25 \, \si{\giga\eV}$ was applied.
-Furthermore, selected jets and leptons require a pseudorapidity of $|\eta| <2.5$.
+Furthermore, selected jets and leptons are required to have a pseudorapidity of $|\eta| <2.5$.
 %a cut on the lepton and jet transverse momentum
 %$\texttt{lep\_pt}, \, \texttt{jet\_pt} > 25 \, \si{\giga\eV}$ and a pseudorapidity for jets and lepton of $|\eta| <2.5$ has been applied.
 %The samples are saved in \texttt{ntuples}. Sometimes an entry for a variable contains more entries than the \texttt{ntuple} itself since for some variables if a multiple
@@ -33,18 +33,16 @@ For the jets, the number of good jets in one event is required to be $\geq 4$
 %(Cut 1)
 , while exactly one lepton is required
 %(Cut 2)
-in the events. Since the final state contains a neutrino
-%which is not seen in the detector
-a missing
-transverse energy $met\_et > 40 \, \si{\giga\eV}$
+in the events. Since the final state contains a neutrino, missing transverse energy $met\_et > 40 \, \si{\giga\eV}$
 %(Cut 3)
  is required. To supress combinatorial background,
-at least one lepton is required to have a transverse momentum $lep\_pt > 50 \, \si{\giga\eV}$
+the lepton is required to have a transverse momentum $lep\_pt > 50 \, \si{\giga\eV}$
 %(Cut 4)
  and one of
-the jets has to pass $jet\_pt > 80 \, \si{\giga\eV}$
+the jets has to pass $jet\_pt > 80 \, \si{\giga\eV}$.
+To calculate the efficiency of the cut on the lepton transverse momentum only, at least one with $lep\_pt > 50 \, \si{\giga\eV}$ is required.
 %(Cut 5)
-. The number of b-tagged jets in one event has to be
+The number of b-tagged jets in one event has to be
 $\geq 2$
 %(Cut 6)
  and one of the b-jets has to fulfill $\texttt{jet\_pt} > 50 \, \si{\giga\eV}$.% (Cut 7).
@@ -339,7 +337,7 @@ $\geq 2$
 
 
 \subsection{Fundamental distributions} \label{sec:sekunde}
-The main background after the selection is $t \overline{t}$-production since it has the same final state, leading to a large selection efficiency
+The main background after the selection is $t \overline{t}$-production since it has the same final state as the signal, leading to a large selection efficiency
 in Table \ref{tab:eff_b} compared to the other simulated SM processes.
 Therefore, the $t \overline{t}$-sample is investigated by creating
 histograms of several kinematic variables for the electron- and muon-samples.
@@ -359,12 +357,12 @@ The most important distributions are shown in Figures \ref{fig:2}, \ref{fig:3} a
 Both, the missing transverse momentum and the transverse momentum shown in Figure \ref{fig:2}, fall exponentially and appear very similar.
 This agrees with the expectation that the missing transverse momentum should in magnitude be roughly the same since the missing
 transverse momentum should be dominated by the momentum of the neutrino from the W-decay. \\
-Both the number of good jets in an event and the number of b-tagged jets have a very similar distribution for the electron- and muon data samples
-%, as expected.
-Since quarks can produce more than one jet in data due to final state radiation or wrong reconstruction of the jets, the observation that some
+Both the number of good jets in an event and the number of b-tagged jets have a very similar distribution for the electron- and muon data samples.
+Since quarks can produce more than one jet in data due to initial and final state radiation or wrong reconstruction of the jets, the observation that some
 events contain more than four jets matches with the expectation.
-Similarly, it is possible that one of the quarks from the hadronic decay of the $W$-boson is a bottom quark and therefore, it is expected that some events
-contain more than two b-tagged jets.
+Since the additional jets can also originate from $b$ quarks, also the number of $b$-tagged jets is expected to be larger than two in some events.
+additionally, it is possible that one of the quarks from the hadronic decay of the $W$-boson is a bottom quark, although highly suppressed.
+It is also possible that $c$-jets (and very rarely light-hadron-jets) are misreconstructed as $b$-jets, resulting in more than two $b$-tagged jets an event.
 %The exxpectation that the number of good jets should
 The same is observed for the kinematic quantities of the jet with the largest transverse momentum of each event. All considered variables follow
 the expected distribution.
@@ -521,44 +519,80 @@ the final discriminant in this analysis.
 
 % Number of simulated events
 \begin{figure}[H]%
-  \begin{subfigure}{0.48\textwidth}%
+  \begin{subfigure}{0.49\textwidth}%
     \centering%
-    \includegraphics[width=\textwidth]{python_plots/met_et.pdf}%
-    \caption{Missing transverse momentum of each event.}%
+    \includegraphics[width=\textwidth]{plots/discriminant/zprime1000.el_met_et.pdf}%
+    \caption{Missing transverse momentum in each event for $Z^\prime(1000 \, \si{\giga\eV})$.}%
     \label{fig:5a}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.45\textwidth}%
+  \begin{subfigure}{0.49\textwidth}%
     \centering%
-    \includegraphics[width=\textwidth]{python_plots/del_phi.pdf}%
-    \caption{The difference in the azimuthal angle of the missing transverse momentum and the lepton.}%
+    \includegraphics[width=\textwidth]{plots/discriminant/ttbar.el_met_et.pdf}%
+    \caption{Missing transverse momentum in each event for $t \overline{t}$.}%
+    \label{fig:5b}%
+  \end{subfigure}\\
+  \begin{subfigure}{0.49\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/discriminant/zprime1000.el_del_phi.pdf}%
+    \caption{The difference in the azimuthal angle of the missing transverse momentum and the lepton for $Z^\prime(1000 \, \si{\giga\eV})$.}%
     \label{fig:5c}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.45\textwidth}%
+  \begin{subfigure}{0.49\textwidth}%
     \centering%
-    \includegraphics[width=\textwidth]{python_plots/dis3.pdf}%
-    \caption{Invariant mass of the three jets with highest transverse momentum.}%
+    \includegraphics[width=\textwidth]{plots/discriminant/ttbar.el_del_phi.pdf}%
+    \caption{The difference in the azimuthal angle of the missing transverse momentum and the lepton for $t \overline{t}$.}%
+    \label{fig:5d}
+  \end{subfigure}\\
+  \begin{subfigure}{0.49\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/discriminant/zprime1000.el_dis3.pdf}%
+    \caption{Invariant mass of the three jets with the highest transverse momentum for $Z^\prime(1000 \, \si{\giga\eV})$.}%
     \label{fig:5e}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.45\textwidth}%
+  \begin{subfigure}{0.49\textwidth}%
     \centering%
-    \includegraphics[width=\textwidth]{python_plots/dis4.pdf}%
-    \caption{Reconstructed invariant mass of the four jets with the highest transverse momentum, the lepton, and missing transverse momentum.}%
-    \label{fig:5g}%
+    \includegraphics[width=\textwidth]{plots/discriminant/ttbar.el_dis3.pdf}%
+    \caption{Invariant mass of the three jets with the highest transverse momentum for $t \overline{t}$.}%
+    \label{fig:5f}%
+  \end{subfigure}%
+   \caption{Histograms of the first three discriminants investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events where the lepton
+   is an electron.}%
+   \label{fig:5}%
+ \end{figure}
+
+ \begin{figure}[H]
+   \begin{subfigure}{0.49\textwidth}%
+     \centering%
+     \includegraphics[width=\textwidth]{plots/discriminant/zprime1000.el_dis4.pdf}%
+     \caption{Reconstructed invariant mass of the four jets with the highest transverse momentum, the lepton, and missing transverse momen- tum for $Z^\prime(1000 \, \si{\giga\eV})$.}%
+     \label{fig:5g}%
+   \end{subfigure}%
+   \hfill
+   \begin{subfigure}{0.49\textwidth}%
+     \centering%
+     \includegraphics[width=\textwidth]{plots/discriminant/ttbar.el_dis4.pdf}%
+      \caption{Reconstructed invariant mass of the four jets with the highest transverse momentum, the lepton, and missing transverse momen- tum for $t \overline{t}$.}%
+      \label{fig:5h}
+    \end{subfigure}\\
+  \begin{subfigure}{0.49\textwidth}%
+    \centering%
+    \includegraphics[width=\textwidth]{plots/discriminant/zprime1000.el_dis5.pdf}%
+    \caption{Pseudorapidity of a system formed by the four jets with the highest transverse momen- tum, the lepton, and the missing transverse momentum for $Z^\prime(1000 \, \si{\giga\eV})$.}%
+    \label{fig:6a}%
   \end{subfigure}%
   \hfill
-  \begin{subfigure}{0.45\textwidth}%
+  \begin{subfigure}{0.49\textwidth}%
     \centering%
-    \includegraphics[width=\textwidth]{python_plots/dis5.pdf}%
-    \caption{Pseudorapidity of a system formed by the four jets with the highest transverse momentum, the lepton, and the missing transverse momentum.}%
-    \label{fig:5e}%
-  \end{subfigure}%
-  \caption{Histograms of the five discriminants investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events where the lepton
-  is an electron.}%
-  \label{fig:5}%
-\end{figure}
+    \includegraphics[width=\textwidth]{plots/discriminant/ttbar.el_dis5.pdf}%
+     \caption{Pseudorapidity of a system formed by the four jets with the highest transverse momen- tum, the lepton, and the missing transverse momentum for $t \overline{t}$.}%
+     \label{fig:6b}%
+   \end{subfigure}%
+   \caption{Histograms of the fifth discriminant investigated for simulated $Z^\prime(1000 \, \si{\giga\eV})$- and $t \overline{t}$-events where the lepton is an electron.}%
+   \label{fig:6}%
+ \end{figure}
 
 
 \subsection{Agreement of simulation and data}
